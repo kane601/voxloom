@@ -20,13 +20,13 @@ import {
 } from "@/lib/constants";
 
 export const metadata: Metadata = {
-	title: `${TOKEN_TICKER} — The official Voicebox token`,
-	description: `${TOKEN_TICKER} is the official community token for Voicebox on Solana. Entirely optional — Voicebox is, and always will be, free and open source.`,
+	title: `${TOKEN_TICKER} — The official VoxLoom token`,
+	description: `${TOKEN_TICKER} is the official community token for VoxLoom on Solana. Entirely optional — VoxLoom is, and always will be, free and open source.`,
 	openGraph: {
 		title: `${TOKEN_TICKER} on Solana`,
-		description: `The official community token for Voicebox. Optional, just for fun — Voicebox stays free and open source.`,
+		description: `The official community token for VoxLoom. Optional, just for fun — VoxLoom stays free and open source.`,
 		type: "website",
-		url: "https://voicebox.sh/token",
+		url: "https://voxloom.sh/token",
 		images: [{url: "/og.webp", width: 1200, height: 630}],
 	},
 };
@@ -39,7 +39,7 @@ const USE_OF_FUNDS = [
 	{
 		icon: Rocket,
 		title: "Full-time development",
-		body: "The token is the equivalent of a salary — it lets me work on Voicebox every day instead of squeezing it around other work.",
+		body: "The token is the equivalent of a salary — it lets me work on VoxLoom every day instead of squeezing it around other work.",
 	},
 	{
 		icon: Cloud,
@@ -49,18 +49,18 @@ const USE_OF_FUNDS = [
 	{
 		icon: Heart,
 		title: "More engines, more hardware",
-		body: "Adding TTS engines and broadening GPU / OS support so Voicebox runs great on whatever you've got.",
+		body: "Adding TTS engines and broadening GPU / OS support so VoxLoom runs great on whatever you've got.",
 	},
 ];
 
 const FAQ = [
 	{
-		q: "Do I need the token to use Voicebox?",
-		a: "No. Voicebox is free and open source, and every feature works without ever touching the token. It exists purely for supporters who want to back the project and have some fun.",
+		q: "Do I need the token to use VoxLoom?",
+		a: "No. VoxLoom is free and open source, and every feature works without ever touching the token. It exists purely for supporters who want to back the project and have some fun.",
 	},
 	{
 		q: "Is this an investment?",
-		a: "No. $VOICEBOX is a community token, not a security or a promise of returns. There is no roadmap of financial milestones, and nothing here is financial advice. Only spend what you're comfortable with.",
+		a: "No. $VOXLOOM is a community token, not a security or a promise of returns. There is no roadmap of financial milestones, and nothing here is financial advice. Only spend what you're comfortable with.",
 	},
 	{
 		q: "How do I buy it?",
@@ -68,7 +68,7 @@ const FAQ = [
 	},
 	{
 		q: "Does buying it fund development?",
-		a: "Yes — going full-time on Voicebox is funded by the token, alongside donations. The surest way to support the project either way is to use it, star the repo, and tell people about it.",
+		a: "Yes — going full-time on VoxLoom is funded by the token, alongside donations. The surest way to support the project either way is to use it, star the repo, and tell people about it.",
 	},
 ];
 
@@ -96,7 +96,7 @@ export default function TokenPage() {
 								So I can build this full-time.
 							</h2>
 							<p className="text-muted-foreground max-w-2xl mx-auto mt-4">
-								Voicebox grew to over a million downloads with zero marketing —
+								VoxLoom grew to over a million downloads with zero marketing —
 								but donations alone never made full-time work sustainable.{" "}
 								{TOKEN_TICKER} changed that overnight, and it's already
 								accelerating everything below. The app stays{" "}
@@ -163,7 +163,7 @@ export default function TokenPage() {
 								</h2>
 							</div>
 							<ul className="space-y-3">
-								<ProofRow text={`${TOKEN_TICKER} is the only official Voicebox token. The mint address on this page is the single source of truth — always verify it.`} />
+								<ProofRow text={`${TOKEN_TICKER} is the only official VoxLoom token. The mint address on this page is the single source of truth — always verify it.`} />
 								<ProofRow text="My other projects (including Spacedrive) will never have an official token. This is the only one I'll ever make." />
 								<ProofRow text="I deployed it myself so liquidity can be locked and the trajectory controlled — and I no longer claim fees on any other community tokens." />
 							</ul>

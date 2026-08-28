@@ -54,11 +54,11 @@ export function useExportGeneration() {
         .substring(0, 30)
         .replace(/[^a-z0-9]/gi, '-')
         .toLowerCase();
-      const filename = `generation-${safeText}-${generationId.substring(0, 8)}.voicebox.zip`;
+      const filename = `generation-${safeText}-${generationId.substring(0, 8)}.voxloom.zip`;
 
       await platform.filesystem.saveFile(filename, blob, [
         {
-          name: 'Voicebox Generation',
+          name: 'VoxLoom Generation',
           extensions: ['zip'],
         },
       ]);

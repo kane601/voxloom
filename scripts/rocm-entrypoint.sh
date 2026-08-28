@@ -10,6 +10,6 @@ for dev in /dev/kfd /dev/dri/render*; do
         grp="gpu$gid"
         groupadd -g "$gid" "$grp"
     }
-    usermod -aG "$grp" voicebox
+    usermod -aG "$grp" voxloom
 done
-exec gosu voicebox "$@"
+exec gosu voxloom "$@"

@@ -27,9 +27,9 @@ def build_server(cuda=False, rocm=False):
 
     Args:
         cuda: If True, build with CUDA support and name the binary
-              voicebox-server-cuda instead of voicebox-server.
+              voxloom-server-cuda instead of voxloom-server.
         rocm: If True, build with ROCm support and name the binary
-              voicebox-server-rocm instead of voicebox-server.
+              voxloom-server-rocm instead of voxloom-server.
     """
     if cuda and rocm:
         raise ValueError("Cannot build with both CUDA and ROCm support")
@@ -37,11 +37,11 @@ def build_server(cuda=False, rocm=False):
     backend_dir = Path(__file__).parent
 
     if rocm:
-        binary_name = "voicebox-server-rocm"
+        binary_name = "voxloom-server-rocm"
     elif cuda:
-        binary_name = "voicebox-server-cuda"
+        binary_name = "voxloom-server-cuda"
     else:
-        binary_name = "voicebox-server"
+        binary_name = "voxloom-server"
 
     # PyInstaller arguments
     # CUDA and ROCm builds use --onedir so we can split the output into two archives:
@@ -305,7 +305,7 @@ def build_server(cuda=False, rocm=False):
             "unidic_lite",
             "--hidden-import",
             "loguru",
-            # MCP server — Streamable-HTTP endpoint and the 4 voicebox.* tools.
+            # MCP server — Streamable-HTTP endpoint and the 4 voxloom.* tools.
             # FastMCP pulls in a chain of deps (mcp, cyclopts, openapi-pydantic,
             # etc.) that don't auto-discover cleanly under PyInstaller, so we
             # collect them whole. Small compared to torch.
@@ -673,10 +673,10 @@ def build_server(cuda=False, rocm=False):
 
 
 def build_shim():
-    """Build the voicebox-mcp stdio shim as a tiny standalone binary.
+    """Build the voxloom-mcp stdio shim as a tiny standalone binary.
 
     This is the bridge for MCP clients that only speak stdio — it proxies
-    JSON-RPC to the main voicebox-server's /mcp endpoint. Keep it small: no
+    JSON-RPC to the main voxloom-server's /mcp endpoint. Keep it small: no
     torch, no ML deps, just httpx + asyncio.
     """
     backend_dir = Path(__file__).parent
@@ -685,7 +685,7 @@ def build_shim():
         "mcp_shim/__main__.py",
         "--onefile",
         "--name",
-        "voicebox-mcp",
+        "voxloom-mcp",
         # Stdio-only — no console hiding needed on Windows since the parent
         # MCP client is spawning this as a child process and wants stdio.
         "--hidden-import",
@@ -759,25 +759,25 @@ def build_shim():
 
     os.chdir(backend_dir)
     PyInstaller.__main__.run(args)
-    logger.info("Shim built: %s", backend_dir / "dist" / "voicebox-mcp")
+    logger.info("Shim built: %s", backend_dir / "dist" / "voxloom-mcp")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Build voicebox binaries")
+    parser = argparse.ArgumentParser(description="Build voxloom binaries")
     parser.add_argument(
         "--cuda",
         action="store_true",
-        help="Build CUDA-enabled binary (voicebox-server-cuda)",
+        help="Build CUDA-enabled binary (voxloom-server-cuda)",
     )
     parser.add_argument(
         "--rocm",
         action="store_true",
-        help="Build ROCm-enabled binary (voicebox-server-rocm) for AMD GPUs",
+        help="Build ROCm-enabled binary (voxloom-server-rocm) for AMD GPUs",
     )
     parser.add_argument(
         "--shim",
         action="store_true",
-        help="Build the voicebox-mcp stdio shim binary instead of the server",
+        help="Build the voxloom-mcp stdio shim binary instead of the server",
     )
     cli_args = parser.parse_args()
     if cli_args.shim:

@@ -96,7 +96,7 @@ export const useUIStore = create<UIStore>()(
       },
     }),
     {
-      name: 'voicebox-ui',
+      name: 'voxloom-ui',
       partialize: (state) => ({
         selectedProfileId: state.selectedProfileId,
         theme: state.theme,

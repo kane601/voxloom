@@ -2,7 +2,7 @@
 ROCm backend download, assembly, and verification.
 
 Downloads two archives from GitHub Releases:
-  1. Server core (voicebox-server-rocm.tar.gz) — the exe + non-AMD deps,
+  1. Server core (voxloom-server-rocm.tar.gz) — the exe + non-AMD deps,
      versioned with the app.
   2. ROCm libs (rocm-libs-{version}.tar.gz) — AMD runtime libraries,
      versioned independently (only redownloaded on ROCm toolkit bump).
@@ -28,7 +28,7 @@ from .. import __version__
 
 logger = logging.getLogger(__name__)
 
-GITHUB_RELEASES_URL = "https://github.com/jamiepine/voicebox/releases/download"
+GITHUB_RELEASES_URL = "https://github.com/jamiepine/voxloom/releases/download"
 
 PROGRESS_KEY = "rocm-backend"
 
@@ -60,8 +60,8 @@ def get_rocm_dir() -> Path:
 def get_rocm_exe_name() -> str:
     """Platform-specific ROCm executable filename."""
     if sys.platform == "win32":
-        return "voicebox-server-rocm.exe"
-    return "voicebox-server-rocm"
+        return "voxloom-server-rocm.exe"
+    return "voxloom-server-rocm"
 
 
 def get_rocm_binary_path() -> Optional[Path]:
@@ -95,7 +95,7 @@ def is_rocm_active() -> bool:
 
     The ROCm binary sets this env var on startup (see server.py).
     """
-    return os.environ.get("VOICEBOX_BACKEND_VARIANT") == "rocm"
+    return os.environ.get("VOXLOOM_BACKEND_VARIANT") == "rocm"
 
 
 def get_rocm_status() -> dict:
@@ -287,7 +287,7 @@ async def _download_rocm_binary_locked(version: Optional[str] = None):
     # release tag; the libs content version is encoded in the filename only.
     server_base_url = f"{GITHUB_RELEASES_URL}/{version}"
     libs_base_url = server_base_url
-    server_archive = "voicebox-server-rocm.tar.gz"
+    server_archive = "voxloom-server-rocm.tar.gz"
     libs_archive = f"rocm-libs-{ROCM_LIBS_VERSION}.tar.gz"
 
     # Always stage when any download is needed, then atomically rename over
@@ -409,9 +409,9 @@ def get_rocm_binary_version() -> Optional[str]:
             timeout=30,
             cwd=str(rocm_path.parent),  # Run from the onedir directory
         )
-        # Output format: "voicebox-server 0.3.0"
+        # Output format: "voxloom-server 0.3.0"
         for line in result.stdout.strip().splitlines():
-            if "voicebox-server" in line:
+            if "voxloom-server" in line:
                 return line.split()[-1]
     except Exception as e:
         logger.warning(f"Could not get ROCm binary version: {e}")

@@ -309,7 +309,7 @@ class GenerationSettingsUpdate(BaseModel):
 
 class MCPClientBindingResponse(BaseModel):
     """Per-MCP-client voice binding — what voice / engine the server should
-    use when a given client_id calls voicebox.speak without args, plus an
+    use when a given client_id calls voxloom.speak without args, plus an
     opt-in personality-rewrite default."""
 
     client_id: str
@@ -346,7 +346,7 @@ class MCPClientBindingListResponse(BaseModel):
 
 
 class SpeakRequest(BaseModel):
-    """Body for POST /speak — non-MCP REST surface that mirrors voicebox.speak."""
+    """Body for POST /speak — non-MCP REST surface that mirrors voxloom.speak."""
 
     text: str = Field(..., min_length=1, max_length=10000)
     profile: Optional[str] = Field(
@@ -807,7 +807,7 @@ class CloudLoginStartResponse(BaseModel):
 
 
 class CloudStatusResponse(BaseModel):
-    """Current link between this device and a Voicebox Cloud account."""
+    """Current link between this device and a VoxLoom Cloud account."""
 
     connected: bool
     device_name: Optional[str] = None

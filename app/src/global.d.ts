@@ -1,5 +1,5 @@
 interface Window {
-  __voiceboxServerStartedByApp?: boolean;
+  __voxloomServerStartedByApp?: boolean;
 }
 
 declare module 'virtual:changelog' {

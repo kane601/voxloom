@@ -1,4 +1,4 @@
-"""ORM model definitions for the voicebox SQLite database."""
+"""ORM model definitions for the voxloom SQLite database."""
 
 from datetime import datetime
 import uuid
@@ -207,7 +207,7 @@ class CaptureSettings(Base):
     # Default OFF — opting in is what triggers the macOS Input Monitoring TCC
     # prompt. We deliberately don't spawn the global keyboard tap until the
     # user flips this on so a fresh-install user doesn't see a scary
-    # "Voicebox would like to receive keystrokes from any application" dialog
+    # "VoxLoom would like to receive keystrokes from any application" dialog
     # before they've even opened the Captures tab.
     hotkey_enabled = Column(Boolean, nullable=False, default=False)
     # Lists of keytap key names (e.g. "MetaRight", "ControlRight"). Right-hand
@@ -235,12 +235,12 @@ class GenerationSettings(Base):
 
 
 class CloudSettings(Base):
-    """Singleton row holding the link to a Voicebox Cloud account.
+    """Singleton row holding the link to a VoxLoom Cloud account.
 
     Populated by the "Log in with browser" pairing flow (see services/cloud.py):
     the browser hands back a one-time code, which the backend exchanges for an
     ``api_key`` it stores here. The key is a bearer credential for
-    api.voicebox.sh — auth only, never an encryption key (E2E key material lives
+    api.voxloom.sh — auth only, never an encryption key (E2E key material lives
     elsewhere). Stored in the local app database alongside the user's other data;
     moving it to the OS keychain is a future hardening step. The ``id`` is
     always 1; a null ``api_key`` means "not connected".
@@ -261,9 +261,9 @@ class MCPClientBinding(Base):
 
     Lets users bind distinct voices to distinct agents — e.g. Claude Code
     speaks in "Morgan," Cursor in "Scarlett." The MCP client identifies
-    itself via the ``X-Voicebox-Client-Id`` HTTP header; direct-HTTP
+    itself via the ``X-VoxLoom-Client-Id`` HTTP header; direct-HTTP
     clients set it in their MCP config's ``headers`` block, the stdio
-    shim forwards it from the ``VOICEBOX_CLIENT_ID`` env var.
+    shim forwards it from the ``VOXLOOM_CLIENT_ID`` env var.
     """
 
     __tablename__ = "mcp_client_bindings"
@@ -272,7 +272,7 @@ class MCPClientBinding(Base):
     label = Column(String, nullable=True)  # display name
     profile_id = Column(String, ForeignKey("profiles.id"), nullable=True)
     default_engine = Column(String, nullable=True)
-    # When true, voicebox.speak routes through the profile's personality LLM
+    # When true, voxloom.speak routes through the profile's personality LLM
     # (rewrite) before TTS by default. Callers can still override per call.
     default_personality = Column(Boolean, nullable=False, default=False)
     last_seen_at = Column(DateTime, nullable=True)

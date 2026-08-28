@@ -40,7 +40,7 @@ def fake_tar_gz():
     buf = BytesIO()
     with tarfile.open(fileobj=buf, mode="w:gz") as tar:
         data = b"fake binary content"
-        info = tarfile.TarInfo(name="voicebox-server-rocm.exe")
+        info = tarfile.TarInfo(name="voxloom-server-rocm.exe")
         info.size = len(data)
         tar.addfile(info, BytesIO(data))
     buf.seek(0)
@@ -137,18 +137,18 @@ async def test_download_rocm_binary_progress_reporting(mock_backends_dir, fake_t
     libs_sha = hashlib.sha256(fake_tar_gz).hexdigest()
 
     responses = {
-        "https://github.com/jamiepine/voicebox/releases/download/v0.2.3/voicebox-server-rocm.tar.gz": FakeResponse(
+        "https://github.com/jamiepine/voxloom/releases/download/v0.2.3/voxloom-server-rocm.tar.gz": FakeResponse(
             content=fake_tar_gz,
             headers={"content-length": str(len(fake_tar_gz))},
         ),
-        "https://github.com/jamiepine/voicebox/releases/download/v0.2.3/voicebox-server-rocm.tar.gz.sha256": FakeResponse(
-            content=f"{server_sha}  voicebox-server-rocm.tar.gz\n".encode(),
+        "https://github.com/jamiepine/voxloom/releases/download/v0.2.3/voxloom-server-rocm.tar.gz.sha256": FakeResponse(
+            content=f"{server_sha}  voxloom-server-rocm.tar.gz\n".encode(),
         ),
-        f"https://github.com/jamiepine/voicebox/releases/download/v0.2.3/rocm-libs-{rocm.ROCM_LIBS_VERSION}.tar.gz": FakeResponse(
+        f"https://github.com/jamiepine/voxloom/releases/download/v0.2.3/rocm-libs-{rocm.ROCM_LIBS_VERSION}.tar.gz": FakeResponse(
             content=fake_tar_gz,
             headers={"content-length": str(len(fake_tar_gz))},
         ),
-        f"https://github.com/jamiepine/voicebox/releases/download/v0.2.3/rocm-libs-{rocm.ROCM_LIBS_VERSION}.tar.gz.sha256": FakeResponse(
+        f"https://github.com/jamiepine/voxloom/releases/download/v0.2.3/rocm-libs-{rocm.ROCM_LIBS_VERSION}.tar.gz.sha256": FakeResponse(
             content=f"{libs_sha}  rocm-libs.tar.gz\n".encode(),
         ),
     }
@@ -160,7 +160,7 @@ async def test_download_rocm_binary_progress_reporting(mock_backends_dir, fake_t
 
     # Verify extraction
     rocm_dir = rocm.get_rocm_dir()
-    assert (rocm_dir / "voicebox-server-rocm.exe").exists()
+    assert (rocm_dir / "voxloom-server-rocm.exe").exists()
 
     # Verify manifest written
     manifest_path = rocm.get_rocm_libs_manifest_path()
@@ -177,13 +177,13 @@ async def test_download_rocm_binary_progress_reporting(mock_backends_dir, fake_t
 
 @pytest.mark.asyncio
 async def test_is_rocm_active(mock_backends_dir, monkeypatch):
-    monkeypatch.setenv("VOICEBOX_BACKEND_VARIANT", "rocm")
+    monkeypatch.setenv("VOXLOOM_BACKEND_VARIANT", "rocm")
     assert rocm.is_rocm_active() is True
 
-    monkeypatch.setenv("VOICEBOX_BACKEND_VARIANT", "cpu")
+    monkeypatch.setenv("VOXLOOM_BACKEND_VARIANT", "cpu")
     assert rocm.is_rocm_active() is False
 
-    monkeypatch.delenv("VOICEBOX_BACKEND_VARIANT", raising=False)
+    monkeypatch.delenv("VOXLOOM_BACKEND_VARIANT", raising=False)
     assert rocm.is_rocm_active() is False
 
 

@@ -18,23 +18,23 @@ import { SettingRow, SettingSection } from './SettingRow';
 
 function getStdioShimCommand(): string {
   if (typeof navigator === 'undefined') {
-    return '/Applications/Voicebox.app/Contents/MacOS/voicebox-mcp';
+    return '/Applications/VoxLoom.app/Contents/MacOS/voxloom-mcp';
   }
 
   const platform = `${navigator.platform} ${navigator.userAgent}`.toLowerCase();
   if (platform.includes('win')) {
-    return 'C:\\Program Files\\Voicebox\\voicebox-mcp.exe';
+    return 'C:\\Program Files\\VoxLoom\\voxloom-mcp.exe';
   }
   if (platform.includes('linux')) {
-    return '/opt/voicebox/voicebox-mcp';
+    return '/opt/voxloom/voxloom-mcp';
   }
-  return '/Applications/Voicebox.app/Contents/MacOS/voicebox-mcp';
+  return '/Applications/VoxLoom.app/Contents/MacOS/voxloom-mcp';
 }
 
 /**
  * Settings → MCP — configure per-agent voice binding and show copy-paste
  * install snippets for major MCP clients. Backend runs at /mcp on the
- * existing Voicebox server; this page is the agent-onboarding surface.
+ * existing VoxLoom server; this page is the agent-onboarding surface.
  */
 export function MCPPage() {
   const { t } = useTranslation();
@@ -82,9 +82,9 @@ export function MCPPage() {
             snippet={JSON.stringify(
               {
                 mcpServers: {
-                  voicebox: {
+                  voxloom: {
                     url: mcpUrl,
-                    headers: { 'X-Voicebox-Client-Id': 'claude-code' },
+                    headers: { 'X-VoxLoom-Client-Id': 'claude-code' },
                   },
                 },
               },
@@ -95,7 +95,7 @@ export function MCPPage() {
           <SnippetRow
             title={t('settings.mcp.install.claudeCode.title')}
             description={t('settings.mcp.install.claudeCode.description')}
-            snippet={`claude mcp add voicebox --transport http --url ${mcpUrl} --header "X-Voicebox-Client-Id: claude-code"`}
+            snippet={`claude mcp add voxloom --transport http --url ${mcpUrl} --header "X-VoxLoom-Client-Id: claude-code"`}
           />
           <SnippetRow
             title={t('settings.mcp.install.stdio.title')}
@@ -103,9 +103,9 @@ export function MCPPage() {
             snippet={JSON.stringify(
               {
                 mcpServers: {
-                  voicebox: {
+                  voxloom: {
                     command: stdioShimCommand,
-                    env: { VOICEBOX_CLIENT_ID: 'claude-code' },
+                    env: { VOXLOOM_CLIENT_ID: 'claude-code' },
                   },
                 },
               },
@@ -276,19 +276,19 @@ export function MCPPage() {
           <h3 className="text-sm font-semibold">{t('settings.mcp.sidebar.toolsTitle')}</h3>
           <ul className="text-sm text-muted-foreground space-y-1.5 leading-relaxed">
             <li>
-              <code className="text-accent">voicebox.speak</code>
+              <code className="text-accent">voxloom.speak</code>
               <div>{t('settings.mcp.sidebar.tools.speak')}</div>
             </li>
             <li>
-              <code className="text-accent">voicebox.transcribe</code>
+              <code className="text-accent">voxloom.transcribe</code>
               <div>{t('settings.mcp.sidebar.tools.transcribe')}</div>
             </li>
             <li>
-              <code className="text-accent">voicebox.list_captures</code>
+              <code className="text-accent">voxloom.list_captures</code>
               <div>{t('settings.mcp.sidebar.tools.listCaptures')}</div>
             </li>
             <li>
-              <code className="text-accent">voicebox.list_profiles</code>
+              <code className="text-accent">voxloom.list_profiles</code>
               <div>{t('settings.mcp.sidebar.tools.listProfiles')}</div>
             </li>
           </ul>

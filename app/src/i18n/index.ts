@@ -47,7 +47,7 @@ i18n
     react: { useSuspense: false },
     detection: {
       order: ['localStorage', 'navigator'],
-      lookupLocalStorage: 'voicebox:lang',
+      lookupLocalStorage: 'voxloom:lang',
       caches: ['localStorage'],
     },
   });

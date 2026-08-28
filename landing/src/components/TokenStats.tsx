@@ -169,7 +169,7 @@ function TokenStatsView({stats}: {stats: TokenStats}) {
 						)}
 						<p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
 							Lifetime {TOKEN_TICKER} trading fees — the funding that pays for
-							full-time work on Voicebox.{" "}
+							full-time work on VoxLoom.{" "}
 							<a
 								href={`https://solscan.io/account/${TOKEN_CREATOR_ADDRESS}`}
 								target="_blank"

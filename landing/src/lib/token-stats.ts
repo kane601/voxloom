@@ -1,4 +1,4 @@
-// Live on-chain stats for $VOICEBOX, fetched server-side via Helius.
+// Live on-chain stats for $VOXLOOM, fetched server-side via Helius.
 //
 // Design goals:
 //   • Never throws. Every sub-fetch is isolated; a failure degrades that one
@@ -264,7 +264,7 @@ async function rpcCall<T>(rpc: string, method: string, params: unknown): Promise
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     next: { revalidate: REVALIDATE_S },
-    body: JSON.stringify({ jsonrpc: '2.0', id: 'voicebox', method, params }),
+    body: JSON.stringify({ jsonrpc: '2.0', id: 'voxloom', method, params }),
   });
   if (!res.ok) throw new Error(`RPC ${method} HTTP ${res.status}`);
   const json = (await res.json()) as { result?: T; error?: { message: string } };
@@ -404,7 +404,7 @@ interface CreatorFeeBucket {
 async function getCreatorRewardsSol(): Promise<number | null> {
   const res = await fetch(
     `https://swap-api.pump.fun/v1/creators/${TOKEN_CREATOR_ADDRESS}/fees?interval=1d`,
-    { next: { revalidate: REVALIDATE_S }, headers: { 'User-Agent': 'voicebox.sh' } },
+    { next: { revalidate: REVALIDATE_S }, headers: { 'User-Agent': 'voxloom.sh' } },
   );
   if (!res.ok) throw new Error(`pump.fun swap-api HTTP ${res.status}`);
   const buckets = (await res.json()) as CreatorFeeBucket[];

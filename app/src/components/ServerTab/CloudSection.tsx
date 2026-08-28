@@ -27,7 +27,7 @@ export function CloudSection() {
     if (connected && polling) {
       setPolling(false);
       toast({
-        title: 'Connected to Voicebox Cloud',
+        title: 'Connected to VoxLoom Cloud',
         description: `Linked as ${status?.device_name ?? 'this device'}.`,
       });
     }
@@ -84,7 +84,7 @@ export function CloudSection() {
 
   return (
     <SettingSection
-      title="Voicebox Cloud"
+      title="VoxLoom Cloud"
       description="End-to-end encrypted backup & sync across your devices."
     >
       <SettingRow
@@ -138,7 +138,7 @@ export function CloudSection() {
         >
           <a
             className="text-sm text-accent hover:underline"
-            href={status?.dashboard_url ?? 'https://voicebox.sh/account'}
+            href={status?.dashboard_url ?? 'https://voxloom.sh/account'}
             rel="noopener noreferrer"
             target="_blank"
           >

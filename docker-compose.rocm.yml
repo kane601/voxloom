@@ -1,5 +1,5 @@
 ---
-# ROCm (AMD GPU) overlay for Voicebox
+# ROCm (AMD GPU) overlay for VoxLoom
 #
 #   docker compose -f docker-compose.yml -f docker-compose.rocm.yml up --build
 #
@@ -8,7 +8,7 @@
 # RDNA4 (RX 9000): export ROCM_VERSION=7.2 (default 6.3 covers RDNA1-3).
 
 services:
-  voicebox:
+  voxloom:
     build:
       context: .
       args:

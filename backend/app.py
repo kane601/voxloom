@@ -139,7 +139,7 @@ def create_app() -> FastAPI:
     mcp_app = mcp.http_app(path="/", transport="http")
 
     @asynccontextmanager
-    async def voicebox_lifespan(app: FastAPI):
+    async def voxloom_lifespan(app: FastAPI):
         await _run_startup(app)
         try:
             yield
@@ -149,16 +149,16 @@ def create_app() -> FastAPI:
             # startup still unloads whatever models were loaded.
             await _run_shutdown()
 
-    # compose_lifespan enters factories in order (voicebox startup →
+    # compose_lifespan enters factories in order (voxloom startup →
     # MCP startup) and exits in LIFO (MCP teardown first → models
     # unload last). That ordering matters on shutdown: FastMCP's
     # __aexit__ cancels in-flight session tasks, and we want that to
     # happen *before* _run_shutdown yanks the TTS / Whisper / LLM
     # models out from under any MCP request that was still generating.
-    lifespan = compose_lifespan(voicebox_lifespan, mcp_app.router.lifespan_context)
+    lifespan = compose_lifespan(voxloom_lifespan, mcp_app.router.lifespan_context)
 
     application = FastAPI(
-        title="voicebox API",
+        title="voxloom API",
         description="Production-quality Qwen3-TTS voice cloning API",
         version=__version__,
         lifespan=lifespan,
@@ -185,7 +185,7 @@ def _configure_cors(application: FastAPI) -> None:
         "https://tauri.localhost",  # Tauri webview (Windows/Linux)
         "http://tauri.localhost",  # Tauri webview (Windows, some builds)
     ]
-    env_origins = os.environ.get("VOICEBOX_CORS_ORIGINS", "")
+    env_origins = os.environ.get("VOXLOOM_CORS_ORIGINS", "")
     all_origins = default_origins + [o.strip() for o in env_origins.split(",") if o.strip()]
 
     application.add_middleware(
@@ -276,7 +276,7 @@ async def _run_startup(application: FastAPI) -> None:
     import platform
     import sys
 
-    logger.info("Voicebox v%s starting up", __version__)
+    logger.info("VoxLoom v%s starting up", __version__)
     logger.info(
         "Python %s on %s %s (%s)",
         sys.version.split()[0],
@@ -358,7 +358,7 @@ async def _run_startup(application: FastAPI) -> None:
 
 async def _run_shutdown() -> None:
     """Unload models on lifespan exit."""
-    logger.info("Voicebox server shutting down...")
+    logger.info("VoxLoom server shutting down...")
     try:
         tts.unload_tts_model()
     except Exception:

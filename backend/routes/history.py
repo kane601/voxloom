@@ -153,7 +153,7 @@ async def export_generation(
         safe_text = "generation"
     # Append a short id so exports of similarly-worded generations don't collide
     # on the same filename (the first 30 chars are frequently identical).
-    filename = f"generation-{safe_text}-{generation_id[:8]}.voicebox.zip"
+    filename = f"generation-{safe_text}-{generation_id[:8]}.voxloom.zip"
 
     return StreamingResponse(
         io.BytesIO(zip_bytes),

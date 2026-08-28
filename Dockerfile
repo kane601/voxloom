@@ -1,5 +1,5 @@
 # ============================================================
-# Voicebox — Local TTS Server with Web UI
+# VoxLoom — Local TTS Server with Web UI
 # 3-stage build: Frontend → Python deps → Runtime
 #
 # Build variants:
@@ -71,8 +71,8 @@ RUN pip install --no-cache-dir --prefix=/install \
 FROM python:3.11-slim
 
 # Create non-root user; the entrypoint joins GPU device groups at runtime.
-RUN groupadd -r voicebox && \
-    useradd -r -g voicebox -m -s /bin/bash voicebox
+RUN groupadd -r voxloom && \
+    useradd -r -g voxloom -m -s /bin/bash voxloom
 
 WORKDIR /app
 
@@ -87,14 +87,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=backend-builder /install /usr/local
 
 # Copy backend application code
-COPY --chown=voicebox:voicebox backend/ /app/backend/
+COPY --chown=voxloom:voxloom backend/ /app/backend/
 
 # Copy built frontend from frontend stage
-COPY --from=frontend --chown=voicebox:voicebox /build/web/dist /app/frontend/
+COPY --from=frontend --chown=voxloom:voxloom /build/web/dist /app/frontend/
 
 # Create data directories owned by non-root user
 RUN mkdir -p /app/data/generations /app/data/profiles /app/data/cache \
-    && chown -R voicebox:voicebox /app/data
+    && chown -R voxloom:voxloom /app/data
 
 # Expose the API port
 EXPOSE 17493
@@ -103,7 +103,7 @@ EXPOSE 17493
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 --start-period=60s \
     CMD curl -f http://localhost:17493/health || exit 1
 
-# Entrypoint joins GPU groups then drops to the voicebox user.
+# Entrypoint joins GPU groups then drops to the voxloom user.
 # Normalize CRLF (a Windows checkout otherwise leaves the shebang as
 # `#!/bin/sh\r`, which Linux can't resolve — reported as a misleading
 # "no such file or directory" even though the file exists).

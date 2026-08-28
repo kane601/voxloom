@@ -1,5 +1,5 @@
 """
-Entry point for PyInstaller-bundled voicebox server.
+Entry point for PyInstaller-bundled voxloom server.
 
 This module provides an entry point that works with PyInstaller by using
 absolute imports instead of relative imports.
@@ -45,18 +45,18 @@ if getattr(sys, 'frozen', False):
 # version check doesn't block for 30+ seconds loading torch etc.
 if "--version" in sys.argv:
     from backend import __version__
-    print(f"voicebox-server {__version__}")
+    print(f"voxloom-server {__version__}")
     sys.exit(0)
 
 # Detect backend variant from binary name BEFORE importing backend modules
 # so that env-var guards in app.py (e.g. HSA_OVERRIDE_GFX_VERSION) fire at import time.
 _binary_name = os.path.basename(sys.executable).lower()
-if re.search(r"voicebox-server-rocm(\.exe)?$", _binary_name):
-    os.environ["VOICEBOX_BACKEND_VARIANT"] = "rocm"
-elif re.search(r"voicebox-server-cuda(\.exe)?$", _binary_name):
-    os.environ["VOICEBOX_BACKEND_VARIANT"] = "cuda"
+if re.search(r"voxloom-server-rocm(\.exe)?$", _binary_name):
+    os.environ["VOXLOOM_BACKEND_VARIANT"] = "rocm"
+elif re.search(r"voxloom-server-cuda(\.exe)?$", _binary_name):
+    os.environ["VOXLOOM_BACKEND_VARIANT"] = "cuda"
 else:
-    os.environ.setdefault("VOICEBOX_BACKEND_VARIANT", "cpu")
+    os.environ.setdefault("VOXLOOM_BACKEND_VARIANT", "cpu")
 
 
 import logging
@@ -71,7 +71,7 @@ logger = logging.getLogger(__name__)
 
 # Log startup immediately to confirm binary execution
 logger.info("=" * 60)
-logger.info("voicebox-server starting up...")
+logger.info("voxloom-server starting up...")
 logger.info(f"Python version: {sys.version}")
 logger.info(f"Executable: {sys.executable}")
 logger.info(f"Arguments: {sys.argv}")
@@ -237,7 +237,7 @@ def _start_parent_watchdog(parent_pid, data_dir=None):
 
 if __name__ == "__main__":
     try:
-        parser = argparse.ArgumentParser(description="voicebox backend server")
+        parser = argparse.ArgumentParser(description="voxloom backend server")
         parser.add_argument(
             "--host",
             type=str,
@@ -272,7 +272,7 @@ if __name__ == "__main__":
         if args.parent_pid is not None and args.parent_pid <= 0:
             parser.error("--parent-pid must be a positive integer")
 
-        logger.info(f"Backend variant: {os.environ.get('VOICEBOX_BACKEND_VARIANT', 'cpu').upper()}")
+        logger.info(f"Backend variant: {os.environ.get('VOXLOOM_BACKEND_VARIANT', 'cpu').upper()}")
 
         # Register parent watchdog to start after server is fully ready
         if args.parent_pid is not None:

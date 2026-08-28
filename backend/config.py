@@ -1,5 +1,5 @@
 """
-Configuration module for voicebox backend.
+Configuration module for voxloom backend.
 
 Handles data directory configuration for production bundling.
 """
@@ -11,9 +11,9 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 # Allow users to override the HuggingFace model download directory.
-# Set VOICEBOX_MODELS_DIR to an absolute path before starting the server.
+# Set VOXLOOM_MODELS_DIR to an absolute path before starting the server.
 # This sets HF_HUB_CACHE so all huggingface_hub downloads go to that path.
-_custom_models_dir = os.environ.get("VOICEBOX_MODELS_DIR")
+_custom_models_dir = os.environ.get("VOXLOOM_MODELS_DIR")
 if _custom_models_dir:
     os.environ["HF_HUB_CACHE"] = _custom_models_dir
     logger.info("Model download path set to: %s", _custom_models_dir)
@@ -107,7 +107,7 @@ def resolve_storage_path(path: str | Path | None) -> Path | None:
 
 def get_db_path() -> Path:
     """Get database file path."""
-    return _data_dir / "voicebox.db"
+    return _data_dir / "voxloom.db"
 
 
 def get_profiles_dir() -> Path:
@@ -145,15 +145,15 @@ def get_models_dir() -> Path:
     return path
 
 
-# Voicebox Cloud (backup & sync). Two hosts: the web app owns auth + device
-# pairing (voicebox.sh), the API owns sync + account endpoints
-# (api.voicebox.sh). Override both for local development, e.g.
-# VOICEBOX_CLOUD_URL=http://localhost:17592 VOICEBOX_CLOUD_API_URL=http://localhost:17593
+# VoxLoom Cloud (backup & sync). Two hosts: the web app owns auth + device
+# pairing (voxloom.sh), the API owns sync + account endpoints
+# (api.voxloom.sh). Override both for local development, e.g.
+# VOXLOOM_CLOUD_URL=http://localhost:17592 VOXLOOM_CLOUD_API_URL=http://localhost:17593
 def get_cloud_web_url() -> str:
-    """Base URL of the Voicebox Cloud web app (auth + /connect + exchange)."""
-    return os.environ.get("VOICEBOX_CLOUD_URL", "https://voicebox.sh").rstrip("/")
+    """Base URL of the VoxLoom Cloud web app (auth + /connect + exchange)."""
+    return os.environ.get("VOXLOOM_CLOUD_URL", "https://voxloom.sh").rstrip("/")
 
 
 def get_cloud_api_url() -> str:
-    """Base URL of the Voicebox Cloud API (bearer-authenticated sync/account)."""
-    return os.environ.get("VOICEBOX_CLOUD_API_URL", "https://api.voicebox.sh").rstrip("/")
+    """Base URL of the VoxLoom Cloud API (bearer-authenticated sync/account)."""
+    return os.environ.get("VOXLOOM_CLOUD_API_URL", "https://api.voxloom.sh").rstrip("/")

@@ -1,8 +1,8 @@
-# Voicebox Cloud Roadmap
+# VoxLoom Cloud Roadmap
 
-The post-mobile commercial trajectory. Captures the strategic arc beyond `mobile/PLAN.md` — what Voicebox becomes once the mobile companion ships and we start layering optional cloud services on top of the local-first base.
+The post-mobile commercial trajectory. Captures the strategic arc beyond `mobile/PLAN.md` — what VoxLoom becomes once the mobile companion ships and we start layering optional cloud services on top of the local-first base.
 
-The desktop app stays free. Paid surface is the cloud layer, gated behind a Voicebox account, designed so the server sees as little as possible.
+The desktop app stays free. Paid surface is the cloud layer, gated behind a VoxLoom account, designed so the server sees as little as possible.
 
 ---
 
@@ -14,7 +14,7 @@ See [`mobile/PLAN.md`](../../mobile/PLAN.md). Entirely local: paired-device keys
 
 ### Phase 1 — Backup & Sync (next big feature)
 
-First introduction of a Voicebox cloud account. Server stores **only encrypted blobs**.
+First introduction of a VoxLoom cloud account. Server stores **only encrypted blobs**.
 
 - **E2E encryption keyed off the device key** from the mobile pairing flow. Audio + transcript blobs are encrypted client-side before upload; the server never has the plaintext or the key.
 - **Quota by number of generations**, not by storage GB. Avoids "how many GB do you offer" framing and keeps tiering legible. (Word-count quotas are an alternative — closer to the ElevenLabs model — but generations are simpler to communicate.)
@@ -28,7 +28,7 @@ The privacy framing is load-bearing. "We see encrypted blobs and that's it" is t
 
 The big bet. Today there is no major neutral voice-inference provider — every cloud TTS service ships its own proprietary models. Open-source TTS models exist and keep getting better, but nobody runs them as a paid hosted catalog  at scale.
 
-Voicebox already has the distribution. The thesis is: the same users who chose local-first specifically to avoid sending voice data to ElevenLabs will pay a fair markup to run open-source voices on hosted GPUs **when they don't have local hardware** (mobile-only users, low-end laptops, "I just don't want to manage CUDA"), provided the privacy story stays consistent.
+VoxLoom already has the distribution. The thesis is: the same users who chose local-first specifically to avoid sending voice data to ElevenLabs will pay a fair markup to run open-source voices on hosted GPUs **when they don't have local hardware** (mobile-only users, low-end laptops, "I just don't want to manage CUDA"), provided the privacy story stays consistent.
 
 - **Catalog-first positioning.** Cloud can offer more voices than the desktop binary bundles (the bundle is already 500MB without CUDA, ~3GB with — there's a hard ceiling on what we can ship locally). Catalog grows over time.
 - **Pricing tiers (rough first cut):** $5 / $15 / $25 / month, plus Enterprise. Final numbers depend on benchmarking — see below.
@@ -71,16 +71,16 @@ Scale-to-zero where cold start fits the budget. Hot engines need warm pools size
 
 **Profile pipeline.** Cloned voice → encrypted blob with user-account-key → uploaded to R2 cold storage → fetched into worker memory at job start → decrypted in memory only, never written to worker disk → discarded on worker idle. TTL applies at the R2 layer (cold storage retention); worker hot-path retention is bounded by warmup window. Embedding-only caching where the engine exposes a stable embedding interface; raw-audio caching is the fallback. Per-engine audit needed before launch — see open questions.
 
-**Hybrid routing on the client.** Desktop, mobile, and MCP clients already speak `127.0.0.1:17493`. Add `VOICEBOX_API_URL` + `VOICEBOX_API_KEY` plus a routing function:
+**Hybrid routing on the client.** Desktop, mobile, and MCP clients already speak `127.0.0.1:17493`. Add `VOXLOOM_API_URL` + `VOXLOOM_API_KEY` plus a routing function:
 
 ```
 if local_backend_reachable() and engine in local_engines:
    → 127.0.0.1:17493
 else:
-   → api.voicebox.sh/v1
+   → api.voxloom.sh/v1
 ```
 
-Mobile-without-paired-desktop falls through to cloud automatically. Desktop without a usable GPU falls through for big engines, stays local for Kokoro. Same `voicebox.speak()` MCP call works either way. This is the differentiator versus ElevenLabs (cloud-only) and pure local-first competitors (no fallback).
+Mobile-without-paired-desktop falls through to cloud automatically. Desktop without a usable GPU falls through for big engines, stays local for Kokoro. Same `voxloom.speak()` MCP call works either way. This is the differentiator versus ElevenLabs (cloud-only) and pure local-first competitors (no fallback).
 
 #### Cloud-cached voice profiles
 
@@ -99,7 +99,7 @@ Inference latency makes it untenable to re-upload reference samples per call. Cl
 
 A marketplace where voice owners license their cloned voices for others to use, with revenue sharing. Possibly: "rent out your AI voice."
 
-This is the only phase that requires hosting voice profiles, and it requires real licensing infrastructure first — consent verification, takedown flow, identity claims, revenue accounting. Until that exists, **Voicebox does not host voice profiles in cloud at all** (see constraint below). Marketplace is the long-term endgame, not the next quarter.
+This is the only phase that requires hosting voice profiles, and it requires real licensing infrastructure first — consent verification, takedown flow, identity claims, revenue accounting. Until that exists, **VoxLoom does not host voice profiles in cloud at all** (see constraint below). Marketplace is the long-term endgame, not the next quarter.
 
 ---
 
@@ -119,7 +119,7 @@ This protects two things at once:
 
 ### Privacy is the moat, not a feature
 
-The "private LLM users → ElevenLabs voice" workflow is incoherent: people pay to keep their text private and then hand their speech to a cloud vendor that trains on it. Voicebox is the consistent answer for that audience. Every cloud feature should be designed so a privacy-conscious user can adopt it without breaking that internal consistency — which is why Phase 1 is fully E2E and Phase 2 is "audited no-log" rather than "we have your audio but trust us."
+The "private LLM users → ElevenLabs voice" workflow is incoherent: people pay to keep their text private and then hand their speech to a cloud vendor that trains on it. VoxLoom is the consistent answer for that audience. Every cloud feature should be designed so a privacy-conscious user can adopt it without breaking that internal consistency — which is why Phase 1 is fully E2E and Phase 2 is "audited no-log" rather than "we have your audio but trust us."
 
 ### Revenue stack is multi-source
 

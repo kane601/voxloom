@@ -29,7 +29,7 @@ async def root():
     index = _frontend_dir / "index.html"
     if index.is_file():
         return FileResponse(index, media_type="text/html")
-    return {"message": "voicebox API", "version": __version__}
+    return {"message": "voxloom API", "version": __version__}
 
 
 @router.post("/shutdown")
@@ -185,7 +185,7 @@ async def health():
         gpu_type=gpu_type,
         vram_used_mb=vram_used,
         backend_type=backend_type,
-        backend_variant=os.environ.get("VOICEBOX_BACKEND_VARIANT", default_variant),
+        backend_variant=os.environ.get("VOXLOOM_BACKEND_VARIANT", default_variant),
         supports_rocm=is_amd_gpu_windows(),
         gpu_compatibility_warning=gpu_compat_warning,
     )
@@ -211,7 +211,7 @@ async def filesystem_health():
         writable = False
         error = None
         if exists:
-            probe = dir_path / ".voicebox_probe"
+            probe = dir_path / ".voxloom_probe"
             try:
                 probe.write_text("ok")
                 probe.unlink()

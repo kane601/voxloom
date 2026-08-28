@@ -65,8 +65,8 @@ class TestRocmRequirements:
 
     @pytest.mark.timeout(900)
     @pytest.mark.skipif(
-        not os.environ.get("VOICEBOX_TEST_ROCM_INSTALL"),
-        reason="Set VOICEBOX_TEST_ROCM_INSTALL=1 to run the heavy install test",
+        not os.environ.get("VOXLOOM_TEST_ROCM_INSTALL"),
+        reason="Set VOXLOOM_TEST_ROCM_INSTALL=1 to run the heavy install test",
     )
     def test_rocm_torch_installs_and_detects_amd(self, backend_dir):
         """

@@ -1,4 +1,4 @@
-"""Voicebox Cloud device login routes.
+"""VoxLoom Cloud device login routes.
 
 The browser-based pairing flow:
   1. POST /cloud/login/start  — opens the browser to the cloud authorize page.
@@ -45,14 +45,14 @@ async def cloud_callback(
     heading = "You're connected" if ok else "Couldn't connect"
     accent = "#16a34a" if ok else "#dc2626"
     sub = (
-        "Voicebox is now linked to your account. You can close this tab and return to the app."
+        "VoxLoom is now linked to your account. You can close this tab and return to the app."
         if ok
         else message
     )
     html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Voicebox Cloud</title>
+<title>VoxLoom Cloud</title>
 <style>
   body {{ margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
     font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background:#0b0b0d; color:#e7e7ea; }}

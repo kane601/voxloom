@@ -1,4 +1,4 @@
-// Shared TypeScript types for the voicebox application
+// Shared TypeScript types for the voxloom application
 
 export interface VoiceProfile {
   id: string;

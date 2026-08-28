@@ -135,13 +135,13 @@
       },
       "inputMonitoring": {
         "label": "Permiso de Monitorización de entrada",
-        "ready": "macOS permite que Voicebox detecte tu atajo global.",
-        "missing": "macOS debe permitir que Voicebox detecte el atajo global.",
+        "ready": "macOS permite que VoxLoom detecte tu atajo global.",
+        "missing": "macOS debe permitir que VoxLoom detecte el atajo global.",
         "openSettings": "Abrir Ajustes"
       },
       "accessibility": {
         "label": "Permiso de Accesibilidad",
-        "ready": "Voicebox puede pegar transcripciones en otras apps.",
+        "ready": "VoxLoom puede pegar transcripciones en otras apps.",
         "missing": "Necesario para que las transcripciones se peguen en la app activa.",
         "openSettings": "Abrir Ajustes"
       }
@@ -149,19 +149,19 @@
     "permissions": {
       "accessibility": {
         "title": "Concede el permiso de Accesibilidad para habilitar el pegado automático",
-        "body": "Voicebox necesita <path>Ajustes del Sistema → Privacidad y seguridad → Accesibilidad</path> para pegar transcripciones en otras apps. Tu dictado igualmente aparece en la pestaña Capturas sin él.",
+        "body": "VoxLoom necesita <path>Ajustes del Sistema → Privacidad y seguridad → Accesibilidad</path> para pegar transcripciones en otras apps. Tu dictado igualmente aparece en la pestaña Capturas sin él.",
         "openSettings": "Abrir Ajustes",
         "recheck": "Ya lo he activado",
         "rechecking": "Comprobando…",
-        "stillMissing": "Sigue sin detectarse. macOS suele requerir salir y reabrir Voicebox tras cambiar el permiso."
+        "stillMissing": "Sigue sin detectarse. macOS suele requerir salir y reabrir VoxLoom tras cambiar el permiso."
       },
       "inputMonitoring": {
         "title": "Concede Monitorización de entrada para habilitar el atajo global",
-        "body": "Voicebox necesita <path>Ajustes del Sistema → Privacidad y seguridad → Monitorización de entrada</path> para detectar tu combinación de dictado. La opción está activada, pero macOS bloquea los eventos de teclado hasta que lo permitas.",
+        "body": "VoxLoom necesita <path>Ajustes del Sistema → Privacidad y seguridad → Monitorización de entrada</path> para detectar tu combinación de dictado. La opción está activada, pero macOS bloquea los eventos de teclado hasta que lo permitas.",
         "openSettings": "Abrir Ajustes",
         "recheck": "Ya lo he activado",
         "rechecking": "Comprobando…",
-        "stillMissing": "Sigue sin detectarse. macOS suele requerir salir y reabrir Voicebox tras cambiar el permiso."
+        "stillMissing": "Sigue sin detectarse. macOS suele requerir salir y reabrir VoxLoom tras cambiar el permiso."
       }
     }
   },
@@ -725,7 +725,7 @@
     "createVoice": "Crear voz",
     "import": {
       "invalidTitle": "Tipo de archivo no válido",
-      "invalidDescription": "Selecciona un archivo .voicebox.zip válido",
+      "invalidDescription": "Selecciona un archivo .voxloom.zip válido",
       "successTitle": "Perfil importado",
       "successDescription": "Perfil de voz importado correctamente",
       "failedTitle": "Error al importar el perfil",
@@ -748,7 +748,7 @@
     },
     "language": {
       "label": "Idioma",
-      "description": "Elige el idioma de la interfaz de Voicebox."
+      "description": "Elige el idioma de la interfaz de VoxLoom."
     },
     "theme": {
       "label": "Tema",
@@ -769,7 +769,7 @@
       },
       "serverUrl": {
         "title": "URL del servidor",
-        "description": "La dirección de tu servidor backend de Voicebox.",
+        "description": "La dirección de tu servidor backend de VoxLoom.",
         "invalidUrl": "Introduce una URL válida",
         "updatedTitle": "URL del servidor actualizada",
         "updatedDescription": "Conectado a {{url}}"
@@ -824,7 +824,7 @@
       },
       "api": {
         "title": "Acceso a la API",
-        "description": "Integra Voicebox en tu flujo de trabajo mediante la API REST en <code>{{url}}</code>",
+        "description": "Integra VoxLoom en tu flujo de trabajo mediante la API REST en <code>{{url}}</code>",
         "viewReference": "Ver la referencia completa de la API",
         "endpoints": {
           "generate": "Generar voz",
@@ -913,7 +913,7 @@
         },
         "autoPaste": {
           "title": "Pegar automáticamente en el campo de texto activo",
-          "description": "Si hay un campo de texto activo en otra app, pega directamente en él. Voicebox guarda y restaura lo que hubiera en tu portapapeles."
+          "description": "Si hay un campo de texto activo en otra app, pega directamente en él. VoxLoom guarda y restaura lo que hubiera en tu portapapeles."
         }
       },
       "transcription": {
@@ -921,7 +921,7 @@
         "description": "Elige qué modelo de voz a texto se ejecuta en tus capturas.",
         "model": {
           "title": "Modelo de transcripción",
-          "description": "Whisper viene incluido con Voicebox y se ejecuta enteramente en tu equipo.",
+          "description": "Whisper viene incluido con VoxLoom y se ejecuta enteramente en tu equipo.",
           "base": "Whisper Base · 74M · {{tail}}",
           "small": "Whisper Small · 244M · {{tail}}",
           "medium": "Whisper Medium · 769M · {{tail}}",
@@ -997,7 +997,7 @@
       },
       "storage": {
         "title": "Almacenamiento",
-        "description": "Las capturas se guardan como archivos emparejados de audio y transcripción en tu directorio de datos de Voicebox.",
+        "description": "Las capturas se guardan como archivos emparejados de audio y transcripción en tu directorio de datos de VoxLoom.",
         "retention": {
           "title": "Retención",
           "description": "Cuánto tiempo conservar las capturas. Se aplica tanto al audio como a las transcripciones.",
@@ -1014,7 +1014,7 @@
       },
       "sidebar": {
         "aboutTitle": "Acerca de Capturas",
-        "aboutBody": "Mantén pulsado un atajo en cualquier parte de tu equipo, habla, y Voicebox convierte tu voz en texto. Reprodúcelo con cualquier voz clonada, pégalo en cualquier app o canalízalo a tu agente de programación.",
+        "aboutBody": "Mantén pulsado un atajo en cualquier parte de tu equipo, habla, y VoxLoom convierte tu voz en texto. Reprodúcelo con cualquier voz clonada, pégalo en cualquier app o canalízalo a tu agente de programación.",
         "differencesTitle": "Qué lo diferencia",
         "local": {
           "title": "Totalmente local.",
@@ -1030,14 +1030,14 @@
         },
         "windowsCaveat": {
           "title": "Aviso en Windows",
-          "body": "El atajo no se activará mientras Voicebox o cualquier app ejecutada como administrador esté en primer plano. Estamos en ello."
+          "body": "El atajo no se activará mientras VoxLoom o cualquier app ejecutada como administrador esté en primer plano. Estamos en ello."
         }
       }
     },
     "mcp": {
       "install": {
         "title": "Instalar en tu agente",
-        "description": "Voicebox expone un servidor MCP local siempre que la app está abierta. Pega uno de estos fragmentos en la configuración MCP de tu agente.",
+        "description": "VoxLoom expone un servidor MCP local siempre que la app está abierta. Pega uno de estos fragmentos en la configuración MCP de tu agente.",
         "http": {
           "title": "HTTP (recomendado)",
           "description": "Para clientes que hablan MCP por HTTP: Claude Code, Cursor, Windsurf, VS Code."
@@ -1055,15 +1055,15 @@
       },
       "defaultVoice": {
         "title": "Voz predeterminada",
-        "description": "Se usa cuando un agente llama a voicebox.speak sin un perfil específico y no tiene una vinculación por cliente.",
+        "description": "Se usa cuando un agente llama a voxloom.speak sin un perfil específico y no tiene una vinculación por cliente.",
         "label": "Voz de reproducción predeterminada",
         "labelHint": "Compartida con el desplegable 'Reproducir como voz' de la pestaña Capturas: una voz predeterminada para la reproducción pasiva.",
         "none": "(ninguna)"
       },
       "bindings": {
         "title": "Voz por agente",
-        "description": "Vincula agentes concretos a voces concretas para saber quién habla sin mirar. El agente se identifica mediante la cabecera X-Voicebox-Client-Id (o la variable de entorno VOICEBOX_CLIENT_ID para stdio).",
-        "empty": "Aún no hay vinculaciones. Añade una abajo y luego configura tu cliente MCP para que envíe el <code>X-Voicebox-Client-Id</code> correspondiente.",
+        "description": "Vincula agentes concretos a voces concretas para saber quién habla sin mirar. El agente se identifica mediante la cabecera X-VoxLoom-Client-Id (o la variable de entorno VOXLOOM_CLIENT_ID para stdio).",
+        "empty": "Aún no hay vinculaciones. Añade una abajo y luego configura tu cliente MCP para que envíe el <code>X-VoxLoom-Client-Id</code> correspondiente.",
         "lastSeen": "visto por última vez {{when}}",
         "lastSeenTitle": "Visto por última vez {{when}}",
         "neverConnected": "nunca conectado",
@@ -1078,7 +1078,7 @@
       },
       "sidebar": {
         "aboutTitle": "Acerca de MCP",
-        "aboutBody": "El Model Context Protocol permite que tu agente de programación con IA —Claude Code, Cursor, Windsurf— llame a las herramientas de Voicebox. Habla con una voz clonada, transcribe audio, explora capturas.",
+        "aboutBody": "El Model Context Protocol permite que tu agente de programación con IA —Claude Code, Cursor, Windsurf— llame a las herramientas de VoxLoom. Habla con una voz clonada, transcribe audio, explora capturas.",
         "toolsTitle": "Herramientas disponibles",
         "tools": {
           "speak": "Pronuncia texto con un perfil de voz.",
@@ -1135,7 +1135,7 @@
         "deleteCuda": "Error al eliminar el backend CUDA",
         "deleteRocm": "Error al eliminar el backend ROCm"
       },
-      "footer": "Voicebox detecta y usa automáticamente la mejor GPU disponible en tu sistema. En Macs con Apple Silicon, el backend MLX se ejecuta de forma nativa en el Neural Engine y la GPU mediante Metal Performance Shaders (MPS), sin configuración adicional. En Windows, puedes descargar backends opcionales CUDA (NVIDIA) o ROCm (AMD) para inferencia acelerada por hardware. Intel XPU y DirectML también son compatibles cuando están disponibles a través de PyTorch. Cuando no se detecta ninguna GPU, Voicebox recurre a la CPU: todos los motores siguen funcionando, solo que más despacio.",
+      "footer": "VoxLoom detecta y usa automáticamente la mejor GPU disponible en tu sistema. En Macs con Apple Silicon, el backend MLX se ejecuta de forma nativa en el Neural Engine y la GPU mediante Metal Performance Shaders (MPS), sin configuración adicional. En Windows, puedes descargar backends opcionales CUDA (NVIDIA) o ROCm (AMD) para inferencia acelerada por hardware. Intel XPU y DirectML también son compatibles cuando están disponibles a través de PyTorch. Cuando no se detecta ninguna GPU, VoxLoom recurre a la CPU: todos los motores siguen funcionando, solo que más despacio.",
       "activeBackend": {
         "description": "La aceleración por GPU está habilitada actualmente."
       },

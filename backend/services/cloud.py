@@ -1,9 +1,9 @@
 """
-Voicebox Cloud device login — the "Log in with browser" flow.
+VoxLoom Cloud device login — the "Log in with browser" flow.
 
 The desktop opens the browser to ``{web}/connect``; the user authorizes while
 signed in; the cloud redirects a single-use code back to this backend's loopback
-callback. We exchange that code (server-to-server, over TLS) for a ``voicebox_…``
+callback. We exchange that code (server-to-server, over TLS) for a ``voxloom_…``
 API key, verify the key against the API, and store it locally. The key never
 travels through a browser URL, and an unfinished flow leaves nothing behind.
 
@@ -97,11 +97,11 @@ async def handle_callback(db: Session, code: str, state: str) -> tuple[bool, str
             payload = _json_dict(exchanged)
             if payload is None:
                 logger.warning("cloud exchange returned a non-JSON payload")
-                return False, "Voicebox Cloud returned an unexpected response."
+                return False, "VoxLoom Cloud returned an unexpected response."
             api_key = payload.get("key")
             device_name = payload.get("label")
             if not api_key:
-                return False, "Voicebox Cloud did not return a key."
+                return False, "VoxLoom Cloud did not return a key."
 
             # Confirm the freshly minted key actually authenticates the API.
             me = await client.get(
@@ -116,10 +116,10 @@ async def handle_callback(db: Session, code: str, state: str) -> tuple[bool, str
             account_user_id = data.get("userId") if isinstance(data, dict) else None
     except httpx.HTTPError:
         logger.exception("network error during cloud exchange")
-        return False, "Could not reach Voicebox Cloud. Check your connection and try again."
+        return False, "Could not reach VoxLoom Cloud. Check your connection and try again."
 
     _store_key(db, api_key=api_key, device_name=device_name, account_user_id=account_user_id)
-    logger.info("connected to Voicebox Cloud as device %r", device_name)
+    logger.info("connected to VoxLoom Cloud as device %r", device_name)
     return True, "Connected"
 
 
@@ -154,7 +154,7 @@ def get_status(db: Session) -> dict:
     """Local view of the cloud link — never returns the full key."""
     row = _get_or_create_row(db)
     connected = bool(row.api_key)
-    # Prefix only: "voicebox_" (9) + 8 chars, matching the cloud's key_prefix.
+    # Prefix only: "voxloom_" (9) + 8 chars, matching the cloud's key_prefix.
     key_prefix = row.api_key[:17] if row.api_key else None
     return {
         "connected": connected,
