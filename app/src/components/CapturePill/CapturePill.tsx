@@ -137,7 +137,6 @@ export function CapturePill({
       className={cn(
         'inline-flex items-center gap-3 px-4 h-10 rounded-full text-accent',
         'bg-white/80 ring-1 ring-black/5 shadow-lg backdrop-blur-xl',
-        'dark:bg-black/55 dark:ring-0 dark:shadow-none dark:backdrop-blur-md',
         completedStroke,
         'transition-opacity duration-300 ease-out',
         visible ? 'opacity-100' : 'opacity-0 pointer-events-none',
@@ -184,7 +183,6 @@ function ErrorPill({
       className={cn(
         'inline-flex items-center gap-2.5 px-4 h-10 rounded-full',
         'bg-white/85 ring-1 ring-destructive/25 shadow-lg backdrop-blur-xl text-red-600 hover:bg-white',
-        'dark:bg-black/65 dark:ring-0 dark:shadow-none dark:backdrop-blur-md dark:text-red-300 dark:hover:bg-black/80',
         'max-w-[380px] transition-colors',
         'focus:outline-none focus:ring-2 focus:ring-red-400/50',
         className,

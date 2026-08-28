@@ -17,7 +17,6 @@ import { useServerStore } from '@/stores/serverStore';
 import { CloudSection } from './CloudSection';
 import { LanguageSelect } from './LanguageSelect';
 import { SettingRow, SettingSection } from './SettingRow';
-import { ThemeSelect } from './ThemeSelect';
 
 function makeConnectionSchema(invalidUrl: string) {
   return z.object({
@@ -201,11 +200,6 @@ export function GeneralPage() {
           action={<LanguageSelect />}
         />
 
-        <SettingRow
-          title={t('settings.theme.label')}
-          description={t('settings.theme.description')}
-          action={<ThemeSelect />}
-        />
       </SettingSection>
 
       <CloudSection />

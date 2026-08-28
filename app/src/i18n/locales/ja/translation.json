@@ -750,15 +750,6 @@
       "label": "言語",
       "description": "VoxLoom の表示言語を選択します。"
     },
-    "theme": {
-      "label": "テーマ",
-      "description": "システム設定に合わせるか、ライト / ダークを固定します。",
-      "options": {
-        "system": "システム",
-        "light": "ライト",
-        "dark": "ダーク"
-      }
-    },
     "general": {
       "docs": { "title": "ドキュメントを読む" },
       "discord": { "title": "Discord に参加", "subtitle": "ヘルプやボイスの共有" },

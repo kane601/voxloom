@@ -750,15 +750,6 @@
       "label": "Idioma",
       "description": "Elige el idioma de la interfaz de VoxLoom."
     },
-    "theme": {
-      "label": "Tema",
-      "description": "Adáptalo a tu sistema o elige una apariencia fija clara u oscura.",
-      "options": {
-        "system": "Sistema",
-        "light": "Claro",
-        "dark": "Oscuro"
-      }
-    },
     "general": {
       "docs": {
         "title": "Leer la documentación"

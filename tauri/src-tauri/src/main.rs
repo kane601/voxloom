@@ -1400,6 +1400,13 @@ pub fn run() {
                 app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
                 app.handle().plugin(tauri_plugin_process::init())?;
 
+                // VoxLoom ships a fixed light theme: force the main window to
+                // light so the overlay titlebar and other native surfaces match
+                // the light UI even when the OS is in dark mode.
+                if let Some(window) = app.get_webview_window("main") {
+                    let _ = window.set_theme(Some(tauri::Theme::Light));
+                }
+
                 // Resolve the active keyboard layout's V keycode now, on
                 // the main thread, and register an observer for layout
                 // changes. The synthetic-paste hot path then only reads an

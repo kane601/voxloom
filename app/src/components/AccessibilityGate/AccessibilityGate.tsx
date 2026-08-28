@@ -115,7 +115,7 @@ export function AccessibilityNotice() {
             </Button>
           </div>
           {stillMissing && !checking && (
-            <p className="text-xs text-amber-600 dark:text-amber-400 pt-1">
+            <p className="text-xs text-amber-600 pt-1">
               {t('captures.permissions.accessibility.stillMissing')}
             </p>
           )}

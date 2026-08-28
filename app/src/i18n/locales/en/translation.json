@@ -750,15 +750,6 @@
       "label": "Language",
       "description": "Choose the display language for VoxLoom."
     },
-    "theme": {
-      "label": "Theme",
-      "description": "Match your system, or pick a fixed light or dark appearance.",
-      "options": {
-        "system": "System",
-        "light": "Light",
-        "dark": "Dark"
-      }
-    },
     "general": {
       "docs": {
         "title": "Read the Docs"

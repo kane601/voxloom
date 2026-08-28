@@ -750,15 +750,6 @@
       "label": "Idioma",
       "description": "Escolha o idioma de exibição do VoxLoom."
     },
-    "theme": {
-      "label": "Tema",
-      "description": "Acompanhe o sistema ou escolha uma aparência clara ou escura fixa.",
-      "options": {
-        "system": "Sistema",
-        "light": "Claro",
-        "dark": "Escuro"
-      }
-    },
     "general": {
       "docs": { "title": "Ler a Documentação" },
       "discord": { "title": "Entrar no Discord", "subtitle": "Tire dúvidas e compartilhe vozes" },

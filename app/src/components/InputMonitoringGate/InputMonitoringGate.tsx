@@ -97,7 +97,7 @@ export function InputMonitoringNotice({ enabled }: { enabled: boolean }) {
             </Button>
           </div>
           {stillMissing && !checking && (
-            <p className="text-xs text-amber-600 dark:text-amber-400 pt-1">
+            <p className="text-xs text-amber-600 pt-1">
               {t('captures.permissions.inputMonitoring.stillMissing')}
             </p>
           )}

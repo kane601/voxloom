@@ -750,15 +750,6 @@
       "label": "语言",
       "description": "选择 VoxLoom 的显示语言。"
     },
-    "theme": {
-      "label": "主题",
-      "description": "跟随系统外观，或固定为浅色 / 深色模式。",
-      "options": {
-        "system": "跟随系统",
-        "light": "浅色",
-        "dark": "深色"
-      }
-    },
     "general": {
       "docs": { "title": "阅读文档" },
       "discord": { "title": "加入 Discord", "subtitle": "获取帮助 & 分享声音" },

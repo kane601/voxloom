@@ -750,15 +750,6 @@
       "label": "語言",
       "description": "選擇 VoxLoom 的顯示語言。"
     },
-    "theme": {
-      "label": "佈景主題",
-      "description": "跟隨系統外觀，或固定為淺色 / 深色模式。",
-      "options": {
-        "system": "跟隨系統",
-        "light": "淺色",
-        "dark": "深色"
-      }
-    },
     "general": {
       "docs": { "title": "閱讀文件" },
       "discord": { "title": "加入 Discord", "subtitle": "取得協助與分享聲音" },
