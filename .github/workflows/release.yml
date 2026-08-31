@@ -15,11 +15,11 @@ jobs:
       matrix:
         include:
           # TEMP DEBUG: single-platform matrix for fast iteration.
-          # Restore macos-latest / macos-15-intel entries once green.
-          - platform: "windows-latest"
-            args: ""
+          # Restore windows-latest / macos-15-intel entries once green.
+          - platform: "macos-latest"
+            args: "--target aarch64-apple-darwin"
             python-version: "3.12"
-            backend: "pytorch"
+            backend: "mlx"
 
     runs-on: ${{ matrix.platform }}
 
@@ -236,13 +236,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-          ENABLE_CODE_SIGNING: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
-          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
-          APPLE_PROVIDER_SHORT_NAME: ${{ secrets.APPLE_PROVIDER_SHORT_NAME }}
-          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
-          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          # TEMP DEBUG: Apple code-signing env removed. No valid .p12 is
+          # configured, and passing an empty/absent APPLE_CERTIFICATE makes the
+          # macOS bundler attempt `security import` and fail with
+          # "SecKeychainItemImport: One or more parameters passed to a function
+          # were not valid". This yields an unsigned build; re-add the signing
+          # env block once a real Apple Developer certificate is configured.
           # Windows code signing — optional. When the secrets are empty,
           # tauri-action builds an unsigned MSI/NSIS instead.
           WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
