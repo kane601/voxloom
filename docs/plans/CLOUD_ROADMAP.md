@@ -77,7 +77,7 @@ Scale-to-zero where cold start fits the budget. Hot engines need warm pools size
 if local_backend_reachable() and engine in local_engines:
    → 127.0.0.1:17493
 else:
-   → api.voxloom.sh/v1
+   → api.aispanvok.com/v1
 ```
 
 Mobile-without-paired-desktop falls through to cloud automatically. Desktop without a usable GPU falls through for big engines, stays local for Kokoro. Same `voxloom.speak()` MCP call works either way. This is the differentiator versus ElevenLabs (cloud-only) and pure local-first competitors (no fallback).

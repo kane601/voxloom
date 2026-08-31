@@ -240,7 +240,7 @@ class CloudSettings(Base):
     Populated by the "Log in with browser" pairing flow (see services/cloud.py):
     the browser hands back a one-time code, which the backend exchanges for an
     ``api_key`` it stores here. The key is a bearer credential for
-    api.voxloom.sh — auth only, never an encryption key (E2E key material lives
+    api.aispanvok.com — auth only, never an encryption key (E2E key material lives
     elsewhere). Stored in the local app database alongside the user's other data;
     moving it to the OS keychain is a future hardening step. The ``id`` is
     always 1; a null ``api_key`` means "not connected".

@@ -14,7 +14,7 @@ We release patches for security vulnerabilities. Which versions are eligible for
 If you discover a security vulnerability, please report it responsibly:
 
 1. **Do not** open a public GitHub issue
-2. Email security details to: [security@voxloom.sh](mailto:security@voxloom.sh)
+2. Email security details to: [security@aispanvok.com](mailto:security@aispanvok.com)
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce

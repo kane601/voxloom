@@ -87,7 +87,7 @@ export function Navbar() {
             Blog
           </a>
           <a
-            href="https://docs.voxloom.sh"
+            href="https://docs.aispanvok.com"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

@@ -1,7 +1,7 @@
 {
   "name": "@voxloom/landing",
   "version": "0.5.0",
-  "description": "Landing page for voxloom.sh",
+  "description": "Landing page for aispanvok.com",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "bun --bun next build",

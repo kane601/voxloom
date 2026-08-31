@@ -148,12 +148,20 @@ Tauri looks for `voxloom-server-${PLATFORM}` in `src-tauri/binaries/` and bundle
 
 ### Code Signing
 
-**macOS:**
+Signing is **optional** — the workflow auto-detects whether the signing secrets exist and skips signing/notarization when they don't.
+
+**macOS (with secrets configured):**
 - Apple Developer certificate imported from secrets
 - Notarization via App Store Connect API
 
-**Windows:**
-- Tauri handles signing via `TAURI_SIGNING_PRIVATE_KEY`
+**macOS (no secrets):**
+- Produces an unsigned, unnotarized DMG. End users must right-click → Open (or allow it in System Settings → Privacy & Security) to run it on macOS 15+.
+
+**Windows (no secrets):**
+- Currently produces an unsigned MSI/NSIS by default. SmartScreen shows a warning; users pick "More info → Run anyway".
+- To enable automatic signing later, add `WINDOWS_CERTIFICATE`, `WINDOWS_CERTIFICATE_PASSWORD`, and `WINDOWS_CERTIFICATE_THUMBPRINT` secrets.
+
+**Both platforms:** `TAURI_SIGNING_PRIVATE_KEY` / `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` are still required for auto-updater artifacts (`createUpdaterArtifacts`). Generate one with `bun tauri signer generate -w ~/.tauri/voxloom.key`.
 
 ### CUDA Binary (Separate Job)
 

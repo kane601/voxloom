@@ -99,7 +99,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://docs.voxloom.sh"
+                  href="https://docs.aispanvok.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
@@ -145,28 +145,18 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Also by */}
+          {/* External links */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Also By</h4>
+            <h4 className="text-sm font-semibold mb-3">Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="https://spacebot.sh"
+                  href="https://aispanvok.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors"
                 >
-                  Spacebot
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://spacedrive.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  Spacedrive
+                  aispanvok.com
                 </a>
               </li>
             </ul>

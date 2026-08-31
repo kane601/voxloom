@@ -27,7 +27,7 @@ from ..utils.progress import get_progress_manager
 
 logger = logging.getLogger(__name__)
 
-GITHUB_RELEASES_URL = "https://github.com/jamiepine/voxloom/releases/download"
+GITHUB_RELEASES_URL = "https://github.com/kane601/voxloom/releases/download"
 
 PROGRESS_KEY = "cuda-backend"
 

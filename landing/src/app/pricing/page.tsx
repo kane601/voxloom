@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 		description:
 			"The app is free forever. Cloud backup & sync is an optional add-on — free for $VOXLOOM holders.",
 		type: "website",
-		url: "https://voxloom.sh/pricing",
+		url: "https://aispanvok.com/pricing",
 		images: [{url: "/og.webp", width: 1200, height: 630}],
 	},
 };

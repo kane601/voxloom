@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 		description:
 			"End-to-end encrypted backup and sync across desktop and mobile. The server is blind — only your devices can decrypt.",
 		type: "website",
-		url: "https://voxloom.sh/cloud",
+		url: "https://aispanvok.com/cloud",
 		images: [{url: "/og.webp", width: 1200, height: 630}],
 	},
 };

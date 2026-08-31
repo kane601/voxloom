@@ -137,7 +137,7 @@ export default function DownloadPage() {
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            Back to voxloom.sh
+            Back to aispanvok.com
           </Link>
         </div>
       </header>
@@ -245,7 +245,7 @@ export default function DownloadPage() {
               </span>
             </div>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-4">
-              Jamie here — VoxLoom is a side project.
+              kane601 here — VoxLoom is a side project.
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6 max-w-2xl">
               I build and maintain VoxLoom in my spare time. It's completely
@@ -269,7 +269,7 @@ export default function DownloadPage() {
           <h2 className="text-sm font-medium text-foreground mb-4">While you wait</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a
-              href="https://docs.voxloom.sh"
+              href="https://docs.aispanvok.com"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl border border-border bg-card/60 backdrop-blur-sm p-5 hover:border-accent/30 hover:bg-card transition-all group"
@@ -281,7 +281,7 @@ export default function DownloadPage() {
               </p>
             </a>
             <a
-              href="https://deepwiki.com/jamiepine/voxloom"
+              href="https://deepwiki.com/kane601/voxloom"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl border border-border bg-card/60 backdrop-blur-sm p-5 hover:border-accent/30 hover:bg-card transition-all group"

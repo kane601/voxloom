@@ -32,7 +32,7 @@ function parsePost(file: string, raw: string): BlogPost {
 	return {
 		slug: slugFromFile(file),
 		title: String(data.title ?? "Untitled"),
-		author: String(data.author ?? "Jamie Pine"),
+		author: String(data.author ?? "kane601"),
 		date:
 			data.date instanceof Date
 				? data.date.toISOString().slice(0, 10)

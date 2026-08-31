@@ -60,8 +60,8 @@
       "open": ".*"
     },
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI1QTM3Q0VCMzgzOEY5QzQKUldURStUZzQ2M3lqdGI2NTk0cXR3UUVWYzNOOWRrODQwcGdib0xadWZFbkxGaUZTMkNvUlIxL00K",
-      "endpoints": ["https://github.com/jamiepine/voxloom/releases/latest/download/latest.json"]
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc2OTQ3MDM2MDFFNEFDMUQKUldRZHJPUUJObkNVZGxaRWkzd21VVUgrZTJRblVqVWZLWk5wTWlNR0pjWUltNEdiMm1SL2EyR0kK",
+      "endpoints": ["https://github.com/kane601/voxloom/releases/latest/download/latest.json"]
     }
   }
 }

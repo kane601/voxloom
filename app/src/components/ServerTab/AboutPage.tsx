@@ -67,12 +67,12 @@ export function AboutPage() {
             <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <span>{t('settings.about.createdBy')}</span>
               <a
-                href="https://github.com/jamiepine"
+                href="https://github.com/kane601"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent hover:underline"
               >
-                Jamie Pine
+                kane601
               </a>
             </div>
           </FadeIn>
@@ -80,7 +80,7 @@ export function AboutPage() {
           <FadeIn delay={320}>
             <div className="flex flex-wrap justify-center gap-3 pt-2">
               <a
-                href="https://buymeacoffee.com/jamiepine"
+                href="https://aispanvok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-lg border border-border/60 px-4 py-2 text-sm transition-colors hover:bg-muted/50"
@@ -97,7 +97,7 @@ export function AboutPage() {
                 <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
               </a>
               <a
-                href="https://github.com/jamiepine/voxloom"
+                href="https://github.com/kane601/voxloom"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-lg border border-border/60 px-4 py-2 text-sm transition-colors hover:bg-muted/50"
@@ -124,7 +124,7 @@ export function AboutPage() {
                   link: (
                     // biome-ignore lint/a11y/useAnchorContent: Trans fills content at runtime
                     <a
-                      href="https://github.com/jamiepine/voxloom/blob/main/LICENSE"
+                      href="https://github.com/kane601/voxloom/blob/main/LICENSE"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-muted-foreground/60 transition-colors"

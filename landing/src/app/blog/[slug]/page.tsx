@@ -24,7 +24,7 @@ export async function generateMetadata({
 			title: post.title,
 			description: post.excerpt,
 			type: "article",
-			url: `https://voxloom.sh/blog/${post.slug}`,
+			url: `https://aispanvok.com/blog/${post.slug}`,
 			// og:image / twitter:image come from the colocated opengraph-image.tsx
 		},
 		twitter: {

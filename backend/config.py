@@ -146,14 +146,14 @@ def get_models_dir() -> Path:
 
 
 # VoxLoom Cloud (backup & sync). Two hosts: the web app owns auth + device
-# pairing (voxloom.sh), the API owns sync + account endpoints
-# (api.voxloom.sh). Override both for local development, e.g.
+# pairing (aispanvok.com), the API owns sync + account endpoints
+# (api.aispanvok.com). Override both for local development, e.g.
 # VOXLOOM_CLOUD_URL=http://localhost:17592 VOXLOOM_CLOUD_API_URL=http://localhost:17593
 def get_cloud_web_url() -> str:
     """Base URL of the VoxLoom Cloud web app (auth + /connect + exchange)."""
-    return os.environ.get("VOXLOOM_CLOUD_URL", "https://voxloom.sh").rstrip("/")
+    return os.environ.get("VOXLOOM_CLOUD_URL", "https://aispanvok.com").rstrip("/")
 
 
 def get_cloud_api_url() -> str:
     """Base URL of the VoxLoom Cloud API (bearer-authenticated sync/account)."""
-    return os.environ.get("VOXLOOM_CLOUD_API_URL", "https://api.voxloom.sh").rstrip("/")
+    return os.environ.get("VOXLOOM_CLOUD_API_URL", "https://api.aispanvok.com").rstrip("/")

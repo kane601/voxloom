@@ -404,7 +404,7 @@ interface CreatorFeeBucket {
 async function getCreatorRewardsSol(): Promise<number | null> {
   const res = await fetch(
     `https://swap-api.pump.fun/v1/creators/${TOKEN_CREATOR_ADDRESS}/fees?interval=1d`,
-    { next: { revalidate: REVALIDATE_S }, headers: { 'User-Agent': 'voxloom.sh' } },
+    { next: { revalidate: REVALIDATE_S }, headers: { 'User-Agent': 'aispanvok.com' } },
   );
   if (!res.ok) throw new Error(`pump.fun swap-api HTTP ${res.status}`);
   const buckets = (await res.json()) as CreatorFeeBucket[];

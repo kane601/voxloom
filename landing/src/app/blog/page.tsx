@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 		title: "VoxLoom Blog",
 		description: "Notes from building VoxLoom — the open-source AI voice studio.",
 		type: "website",
-		url: "https://voxloom.sh/blog",
+		url: "https://aispanvok.com/blog",
 		images: [{url: "/og.webp", width: 1200, height: 630}],
 	},
 };

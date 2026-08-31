@@ -28,7 +28,7 @@ from .. import __version__
 
 logger = logging.getLogger(__name__)
 
-GITHUB_RELEASES_URL = "https://github.com/jamiepine/voxloom/releases/download"
+GITHUB_RELEASES_URL = "https://github.com/kane601/voxloom/releases/download"
 
 PROGRESS_KEY = "rocm-backend"
 

@@ -12,7 +12,7 @@ export interface ReleaseInfo {
   totalDownloads: number;
 }
 
-const GITHUB_REPO = 'jamiepine/voxloom';
+const GITHUB_REPO = 'kane601/voxloom';
 const GITHUB_API_BASE = 'https://api.github.com';
 
 // Cache for release info (in-memory cache, resets on server restart)

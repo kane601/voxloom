@@ -94,7 +94,7 @@ export default function LinuxInstall() {
               <div className="space-y-3">
                 <div className="rounded-lg border border-border bg-card/60 p-4 font-mono text-sm">
                   <div className="text-muted-foreground select-none"># Clone the repo</div>
-                  <div>git clone https://github.com/jamiepine/voxloom.git</div>
+                  <div>git clone https://github.com/kane601/voxloom.git</div>
                   <div>cd voxloom</div>
                 </div>
 

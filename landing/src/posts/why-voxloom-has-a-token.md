@@ -1,6 +1,6 @@
 ---
 title: "Why VoxLoom has a token"
-author: Jamie Pine
+author: kane601
 date: 2026-06-27
 tags: [Token, Transparency]
 excerpt: "VoxLoom grew to over a million downloads with zero marketing — but donations never made full-time work sustainable. Here's the honest reasoning behind $VOXLOOM, and the commitments that come with it."

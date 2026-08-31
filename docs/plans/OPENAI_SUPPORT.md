@@ -2,7 +2,7 @@
 
 **Status:** Planned for v0.2.0
 
-**Issue:** [#10 OpenAI API compatibility](https://github.com/jamiepine/voxloom/issues/10)
+**Issue:** [#10 OpenAI API compatibility](https://github.com/kane601/voxloom/issues/10)
 
 ## Overview
 

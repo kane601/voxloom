@@ -145,7 +145,7 @@ jobs:
         run: bun install
 
       - name: Install Apple API key
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
+        if: (matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel') && secrets.APPLE_API_KEY_BASE64 != ''
         run: |
           mkdir -p ~/.appstoreconnect/private_keys/
           cd ~/.appstoreconnect/private_keys/
@@ -154,7 +154,7 @@ jobs:
           rm AuthKey_${{ secrets.APPLE_API_KEY }}.p8.base64
 
       - name: Install Codesigning Certificate
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
+        if: (matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel') && secrets.APPLE_CERTIFICATE != ''
         uses: apple-actions/import-codesign-certs@v3
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
@@ -216,6 +216,11 @@ jobs:
           APPLE_PROVIDER_SHORT_NAME: ${{ secrets.APPLE_PROVIDER_SHORT_NAME }}
           APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          # Windows code signing — optional. When the secrets are empty,
+          # tauri-action builds an unsigned MSI/NSIS instead.
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          WINDOWS_CERTIFICATE_THUMBPRINT: ${{ secrets.WINDOWS_CERTIFICATE_THUMBPRINT }}
           # Stream subprocess stdout/stderr so the hang is visible in logs.
           CARGO_TERM_VERBOSE: "true"
           RUST_BACKTRACE: "1"
@@ -236,7 +241,7 @@ jobs:
       # Submit the .dmg to notarytool, staple the ticket, and overwrite the
       # release asset uploaded by tauri-action.
       - name: Notarize and staple DMG (macOS)
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel'
+        if: (matrix.platform == 'macos-latest' || matrix.platform == 'macos-15-intel') && secrets.APPLE_API_KEY != '' && secrets.APPLE_API_ISSUER != ''
         env:
           APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY }}
           APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}

@@ -10,7 +10,7 @@ VoxLoom can run as a Docker container with a full web UI -- no desktop app requi
 ## Quick Start
 
 ```bash
-git clone https://github.com/jamiepine/voxloom.git
+git clone https://github.com/kane601/voxloom.git
 cd voxloom
 docker compose up
 ```
@@ -226,7 +226,7 @@ We plan to publish prebuilt Docker images to GitHub Container Registry so you wo
 
 ```bash
 # Not available yet — coming in a future release
-docker run -p 17493:17493 ghcr.io/jamiepine/voxloom:latest
+docker run -p 17493:17493 ghcr.io/kane601/voxloom:latest
 ```
 
 The CPU image will be ~3-4 GB (Python + PyTorch + TTS packages). A separate CUDA tag (~6-8 GB) will be available for NVIDIA GPU users. This is normal for ML containers.

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://voxloom.sh'),
+  metadataBase: new URL('https://aispanvok.com'),
   title: 'VoxLoom - Open Source Voice Cloning Desktop App',
   description:
     'Near-perfect voice cloning with multiple TTS engines. Desktop app for Mac, Windows, and Linux. Multi-sample support, smart caching, local or remote inference.',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'VoxLoom',
     description: 'Open source voice cloning. Local-first. Free forever.',
     type: 'website',
-    url: 'https://voxloom.sh',
+    url: 'https://aispanvok.com',
     images: [{ url: '/og.webp', width: 1200, height: 630 }],
   },
   twitter: {

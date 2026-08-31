@@ -6,15 +6,14 @@ export function Banner() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center h-10 text-sm">
           <a
-            href="https://spacebot.sh"
+            href="https://aispanvok.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
           >
             <span>
-              Also by the creator of VoxLoom:{' '}
-              <strong className="text-foreground/90">Spacebot</strong>, an AI agent OS for teams.
-              Connect Discord, Slack, or Telegram in one click.
+              VoxLoom — a free, open-source AI voice studio.{' '}
+              <strong className="text-foreground/90">aispanvok.com</strong>
             </span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>

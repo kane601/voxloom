@@ -138,7 +138,7 @@ export function CloudSection() {
         >
           <a
             className="text-sm text-accent hover:underline"
-            href={status?.dashboard_url ?? 'https://voxloom.sh/account'}
+            href={status?.dashboard_url ?? 'https://aispanvok.com/account'}
             rel="noopener noreferrer"
             target="_blank"
           >

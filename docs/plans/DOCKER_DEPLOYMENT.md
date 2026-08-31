@@ -20,16 +20,16 @@ Docker support makes VoxLoom easier to deploy, especially for:
 ```bash
 # CPU-only version
 docker run -p 8000:8000 -v voxloom-data:/app/data \
-  ghcr.io/jamiepine/voxloom:latest
+  ghcr.io/kane601/voxloom:latest
 
 # NVIDIA GPU version
 docker run --gpus all -p 8000:8000 -v voxloom-data:/app/data \
-  ghcr.io/jamiepine/voxloom:latest-cuda
+  ghcr.io/kane601/voxloom:latest-cuda
 
 # AMD GPU version (experimental)
 docker run --device=/dev/kfd --device=/dev/dri -p 8000:8000 \
   -v voxloom-data:/app/data \
-  ghcr.io/jamiepine/voxloom:latest-rocm
+  ghcr.io/kane601/voxloom:latest-rocm
 ```
 
 Then open: `http://localhost:8000`
@@ -43,7 +43,7 @@ version: '3.8'
 
 services:
   voxloom:
-    image: ghcr.io/jamiepine/voxloom:latest-cuda
+    image: ghcr.io/kane601/voxloom:latest-cuda
     ports:
       - "8000:8000"
     volumes:
@@ -325,7 +325,7 @@ version: '3.8'
 
 services:
   voxloom:
-    image: ghcr.io/jamiepine/voxloom:latest-cuda
+    image: ghcr.io/kane601/voxloom:latest-cuda
     container_name: voxloom
     restart: unless-stopped
     ports:
@@ -403,7 +403,7 @@ version: '3.8'
 services:
   # Main VoxLoom app
   voxloom:
-    image: ghcr.io/jamiepine/voxloom:latest-cuda
+    image: ghcr.io/kane601/voxloom:latest-cuda
     restart: unless-stopped
     volumes:
       - voxloom-data:/app/data
@@ -468,7 +468,7 @@ volumes:
    docker run --gpus all -d -p 80:8000 \
      -v voxloom-data:/app/data \
      --restart unless-stopped \
-     ghcr.io/jamiepine/voxloom:latest-cuda
+     ghcr.io/kane601/voxloom:latest-cuda
    ```
 
 ### DigitalOcean
@@ -513,7 +513,7 @@ Create `fly.toml`:
 app = "voxloom"
 
 [build]
-  image = "ghcr.io/jamiepine/voxloom:latest"
+  image = "ghcr.io/kane601/voxloom:latest"
 
 [[services]]
   http_checks = []
@@ -748,7 +748,7 @@ Help improve Docker support:
 1. Test on different platforms (AMD GPU, ARM64, etc.)
 2. Submit Dockerfile optimizations
 3. Share deployment configurations
-4. Report issues: [GitHub Issues](https://github.com/jamiepine/voxloom/issues)
+4. Report issues: [GitHub Issues](https://github.com/kane601/voxloom/issues)
 
 ## Resources
 

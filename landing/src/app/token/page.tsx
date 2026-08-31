@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 		title: `${TOKEN_TICKER} on Solana`,
 		description: `The official community token for VoxLoom. Optional, just for fun — VoxLoom stays free and open source.`,
 		type: "website",
-		url: "https://voxloom.sh/token",
+		url: "https://aispanvok.com/token",
 		images: [{url: "/og.webp", width: 1200, height: 630}],
 	},
 };

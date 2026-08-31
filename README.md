@@ -11,30 +11,30 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/jamiepine/voxloom/releases">
-    <img src="https://img.shields.io/github/downloads/jamiepine/voxloom/total?style=flat&color=blue" alt="Downloads" />
+  <a href="https://github.com/kane601/voxloom/releases">
+    <img src="https://img.shields.io/github/downloads/kane601/voxloom/total?style=flat&color=blue" alt="Downloads" />
   </a>
-  <a href="https://github.com/jamiepine/voxloom/releases/latest">
-    <img src="https://img.shields.io/github/v/release/jamiepine/voxloom?style=flat" alt="Release" />
+  <a href="https://github.com/kane601/voxloom/releases/latest">
+    <img src="https://img.shields.io/github/v/release/kane601/voxloom?style=flat" alt="Release" />
   </a>
-  <a href="https://github.com/jamiepine/voxloom/stargazers">
-    <img src="https://img.shields.io/github/stars/jamiepine/voxloom?style=flat" alt="Stars" />
+  <a href="https://github.com/kane601/voxloom/stargazers">
+    <img src="https://img.shields.io/github/stars/kane601/voxloom?style=flat" alt="Stars" />
   </a>
-  <a href="https://github.com/jamiepine/voxloom/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/jamiepine/voxloom?style=flat" alt="License" />
+  <a href="https://github.com/kane601/voxloom/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/kane601/voxloom?style=flat" alt="License" />
   </a>
-  <a href="https://deepwiki.com/jamiepine/voxloom">
+  <a href="https://deepwiki.com/kane601/voxloom">
     <img src="https://img.shields.io/static/v1?label=Ask&message=DeepWiki&color=5B6EF7" alt="Ask DeepWiki" />
   </a>
 </p>
 
 <p align="center">
-    <a href="https://trendshift.io/repositories/21213" target="_blank"><img src="https://trendshift.io/api/badge/repositories/21213" alt="jamiepine%2Fvoxloom | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+    <a href="https://trendshift.io/repositories/21213" target="_blank"><img src="https://trendshift.io/api/badge/repositories/21213" alt="kane601%2Fvoxloom | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </p>
 
 <p align="center">
-  <a href="https://voxloom.sh">voxloom.sh</a> •
-  <a href="https://docs.voxloom.sh">Docs</a> •
+  <a href="https://aispanvok.com">aispanvok.com</a> •
+  <a href="https://docs.aispanvok.com">Docs</a> •
   <a href="#download">Download</a> •
   <a href="#features">Features</a> •
   <a href="#api">API</a> •
@@ -44,13 +44,13 @@
 <br/>
 
 <p align="center">
-  <a href="https://voxloom.sh">
+  <a href="https://aispanvok.com">
     <img src="landing/public/assets/app-screenshot-1.webp" alt="VoxLoom App Screenshot" width="800" />
   </a>
 </p>
 
 <p align="center">
-  <em>Click the image above to watch the demo video on <a href="https://voxloom.sh">voxloom.sh</a></em>
+  <em>Click the image above to watch the demo video on <a href="https://aispanvok.com">aispanvok.com</a></em>
 </p>
 
 <br/>
@@ -92,14 +92,14 @@ The two cloud incumbents sit on opposite halves of the voice I/O loop — Eleven
 
 | Platform              | Download                                               |
 | --------------------- | ------------------------------------------------------ |
-| macOS (Apple Silicon) | [Download DMG](https://voxloom.sh/download/mac-arm)   |
-| macOS (Intel)         | [Download DMG](https://voxloom.sh/download/mac-intel) |
-| Windows               | [Download MSI](https://voxloom.sh/download/windows)   |
+| macOS (Apple Silicon) | [Download DMG](https://aispanvok.com/download/mac-arm)   |
+| macOS (Intel)         | [Download DMG](https://aispanvok.com/download/mac-intel) |
+| Windows               | [Download MSI](https://aispanvok.com/download/windows)   |
 | Docker                | `docker compose up`                                    |
 
-> **[View all binaries →](https://github.com/jamiepine/voxloom/releases/latest)**
+> **[View all binaries →](https://github.com/kane601/voxloom/releases/latest)**
 
-> **Linux** — Pre-built binaries are not yet available. See [voxloom.sh/linux-install](https://voxloom.sh/linux-install) for build-from-source instructions.
+> **Linux** — Pre-built binaries are not yet available. See [aispanvok.com/linux-install](https://aispanvok.com/linux-install) for build-from-source instructions.
 
 > **Having trouble?** See the [Troubleshooting Guide](docs/content/docs/overview/troubleshooting.mdx) for common install, generation, model-download, and GPU issues.
 
@@ -408,7 +408,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed setup and contribution guide
 ### Quick Start
 
 ```bash
-git clone https://github.com/jamiepine/voxloom.git
+git clone https://github.com/kane601/voxloom.git
 cd voxloom
 
 just setup   # creates Python venv, installs all deps
@@ -470,5 +470,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <a href="https://voxloom.sh">voxloom.sh</a>
+  <a href="https://aispanvok.com">aispanvok.com</a>
 </p>
