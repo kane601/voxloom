@@ -35,7 +35,7 @@ fi
 echo "🔧 Setting up environment..."
 
 export TAURI_SIGNING_PRIVATE_KEY="$(cat ~/.tauri/voxloom.key)"
-export TAURI_SIGNING_PRIVATE_KEY_PASSWORD=""
+export TAURI_SIGNING_PRIVATE_KEY_PASSWORD="voxloom-signing-key"
 
 echo "✅ Environment configured"
 echo ""

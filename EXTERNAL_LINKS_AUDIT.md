@@ -28,9 +28,9 @@
 ### 1. ✅ 已完成 —— 全新签名密钥对已生成（2026-08-28）
 - 公钥**已写入** `tauri/src-tauri/tauri.conf.json` → `plugins.updater.pubkey`：
   ```
-  dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc2OTQ3MDM2MDFFNEFDMUQKUldRZHJPUUJObkNVZGxaRWkzd21VVUgrZTJRblVqVWZLWk5wTWlNR0pjWUltNEdiMm1SL2EyR0kK
+  dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDEzRDFDMDhFMUMyRjU4MUYKUldRZldDOGNqc0RSRTZENWkzanFaenNSOWRPV2tuQTJGaHZVWHEzZlh6a3VpZVM5QXpBa21mWDUK
   ```
-- 私钥位置：`%USERPROFILE%\.tauri\voxloom.key`（**空密码**）
+- 私钥位置：`%USERPROFILE%\.tauri\voxloom.key`（**密码：`voxloom-signing-key`**）
 - 上游原始私钥已备份：`%USERPROFILE%\.tauri\voxloom.key.upstream-bak`（+ `.pub.upstream-bak`）—— 已用新 key 替换后，**旧 key 不再用于发布**，可留作历史或删除
 - 重新生成命令（如需换新）：`cd tauri && bun tauri signer generate -w "$HOME\.tauri\voxloom.key" -f --ci`（`-f` 覆盖，先自行备份）
 - ⚠️ 私钥/备份文件**切勿提交到仓库**（已确认 `.gitignore` 之外要手工注意）
@@ -38,8 +38,8 @@
 ### 2. 待办 —— 在 GitHub 仓库配置 Secrets（Settings → Secrets and variables → Actions → New repository secret）
 | Secret 名 | 必填 | 值 |
 |---|---|---|
-| `TAURI_SIGNING_PRIVATE_KEY` | **必须** | 运行 `Get-Content "$HOME\.tauri\voxloom.key" -Raw`，复制输出内容（含换行的完整 base64 文本，整体粘贴为一个 Secret） |
-| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | 不用配 | 新 key 为空密码，**无需创建该 Secret** |
+| `TAURI_SIGNING_PRIVATE_KEY` | **必须** | 运行 `Get-Content "$HOME\.tauri\voxloom.key" -Raw`，复制**整行 base64 文本**（不要 base64 解码成两行再粘贴） |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | **必须** | `voxloom-signing-key`（当前私钥有密码；留空会导致 CI 在签名步骤挂起/失败） |
 | `APPLE_CERTIFICATE` / `APPLE_CERTIFICATE_PASSWORD` / `APPLE_SIGNING_IDENTITY` | 可选 | Apple Developer 公证证书（暂无则留空） |
 | `WINDOWS_CERTIFICATE` / `WINDOWS_CERTIFICATE_PASSWORD` | 可选 | Windows 代码签名证书（暂无则留空） |
 
