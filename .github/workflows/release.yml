@@ -14,14 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-latest"
-            args: "--target aarch64-apple-darwin"
-            python-version: "3.12"
-            backend: "mlx"
-          - platform: "macos-15-intel"
-            args: "--target x86_64-apple-darwin"
-            python-version: "3.12"
-            backend: "pytorch"
+          # TEMP DEBUG: single-platform matrix for fast iteration.
+          # Restore macos-latest / macos-15-intel entries once green.
           - platform: "windows-latest"
             args: ""
             python-version: "3.12"
@@ -206,6 +200,31 @@ jobs:
             echo "CHANGELOG_EOF"
           } >> "$GITHUB_OUTPUT"
 
+      # TEMP DEBUG: diagnose updater signing secrets before tauri build.
+      # Only prints lengths/lines + the non-secret header line — never the key body.
+      - name: Debug signing secrets
+        shell: bash
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          if [ -z "${TAURI_SIGNING_PRIVATE_KEY:-}" ]; then
+            echo "::error::TAURI_SIGNING_PRIVATE_KEY is MISSING (empty secret or not configured)"
+          else
+            LINES=$(printf '%s' "$TAURI_SIGNING_PRIVATE_KEY" | awk 'BEGIN{n=0} {gsub(/\r/,""); if(length($0)>0) n++} END{print n}')
+            CHARS=${#TAURI_SIGNING_PRIVATE_KEY}
+            echo "TAURI_SIGNING_PRIVATE_KEY present: non-empty lines=${LINES} chars=${CHARS}"
+            if [ "$LINES" -lt 2 ]; then
+              echo "::error::Private key should contain 2 lines (untrusted comment + base64 body) — it may have been pasted as a single line"
+            fi
+            echo "header: $(printf '%s' "$TAURI_SIGNING_PRIVATE_KEY" | head -1)"
+          fi
+          if [ -z "${TAURI_SIGNING_PRIVATE_KEY_PASSWORD:-}" ]; then
+            echo "note: TAURI_SIGNING_PRIVATE_KEY_PASSWORD empty — expected (new key has empty password)"
+          else
+            echo "TAURI_SIGNING_PRIVATE_KEY_PASSWORD present: chars=${#TAURI_SIGNING_PRIVATE_KEY_PASSWORD}"
+          fi
+
       # Linux hang watchdog: previous releases silently wedged inside tauri
       # bundling (possibly linuxdeploy/AppImage download, possibly cargo link).
       # Cap the step at 30 min so we get logs instead of waiting out the 6hr
@@ -282,135 +301,138 @@ jobs:
             echo "::endgroup::"
           done
 
-  build-cuda-windows:
-    runs-on: windows-latest
-    permissions:
-      contents: write
+  # TEMP DEBUG: build-cuda-windows disabled for fast iteration. Restore below.
+  # build-cuda-windows:
+  #   runs-on: windows-latest
+  #   permissions:
+  #     contents: write
+  #
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: "3.12"
+  #         cache: "pip"
+  #
+  #     - name: Install Python dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install pyinstaller
+  #         pip install -r backend/requirements.txt
+  #         pip install --no-deps chatterbox-tts
+  #         pip install --no-deps hume-tada
+  #
+  #     - name: Install PyTorch with CUDA 12.8
+  #       run: |
+  #         pip install torch --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps
+  #         pip install torchaudio --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps
+  #
+  #     - name: Verify CUDA support in torch
+  #       run: |
+  #         python -c "import torch; print(f'CUDA available in build: {torch.cuda.is_available()}'); print(f'CUDA version: {torch.version.cuda}')"
+  #
+  #     - name: Build CUDA server binary (onedir)
+  #       shell: bash
+  #       working-directory: backend
+  #       env:
+  #         # Include Blackwell (sm_120) via PTX forward compatibility.
+  #         # Pre-built PyTorch cu128 wheels ship native kernels for sm_80/86/89/90
+  #         # but not sm_120. Setting this env var causes torch.utils.cpp_extension
+  #         # (and any JIT-compiled kernels) to target Blackwell GPUs as well.
+  #         TORCH_CUDA_ARCH_LIST: "8.0;8.6;8.9;9.0;12.0+PTX"
+  #       run: python build_binary.py --cuda
+  #
+  #     - name: Package into server core + CUDA libs archives
+  #       shell: bash
+  #       run: |
+  #         python scripts/package_cuda.py \
+  #           backend/dist/voxloom-server-cuda/ \
+  #           --output release-assets/ \
+  #           --cuda-libs-version cu128-v1 \
+  #           --torch-compat ">=2.7.0,<2.11.0"
+  #
+  #     - name: Upload archives to GitHub Release
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       uses: softprops/action-gh-release@v2
+  #       with:
+  #         files: |
+  #           release-assets/voxloom-server-cuda.tar.gz
+  #           release-assets/voxloom-server-cuda.tar.gz.sha256
+  #           release-assets/cuda-libs-cu128-v1.tar.gz
+  #           release-assets/cuda-libs-cu128-v1.tar.gz.sha256
+  #           release-assets/cuda-libs.json
+  #         draft: true
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #
+  #     - name: Upload onedir as workflow artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: voxloom-server-cuda-windows
+  #         path: backend/dist/voxloom-server-cuda/
+  #         retention-days: 7
+  #
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: "pip"
-
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
-          pip install -r backend/requirements.txt
-          pip install --no-deps chatterbox-tts
-          pip install --no-deps hume-tada
-
-      - name: Install PyTorch with CUDA 12.8
-        run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps
-          pip install torchaudio --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps
-
-      - name: Verify CUDA support in torch
-        run: |
-          python -c "import torch; print(f'CUDA available in build: {torch.cuda.is_available()}'); print(f'CUDA version: {torch.version.cuda}')"
-
-      - name: Build CUDA server binary (onedir)
-        shell: bash
-        working-directory: backend
-        env:
-          # Include Blackwell (sm_120) via PTX forward compatibility.
-          # Pre-built PyTorch cu128 wheels ship native kernels for sm_80/86/89/90
-          # but not sm_120. Setting this env var causes torch.utils.cpp_extension
-          # (and any JIT-compiled kernels) to target Blackwell GPUs as well.
-          TORCH_CUDA_ARCH_LIST: "8.0;8.6;8.9;9.0;12.0+PTX"
-        run: python build_binary.py --cuda
-
-      - name: Package into server core + CUDA libs archives
-        shell: bash
-        run: |
-          python scripts/package_cuda.py \
-            backend/dist/voxloom-server-cuda/ \
-            --output release-assets/ \
-            --cuda-libs-version cu128-v1 \
-            --torch-compat ">=2.7.0,<2.11.0"
-
-      - name: Upload archives to GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            release-assets/voxloom-server-cuda.tar.gz
-            release-assets/voxloom-server-cuda.tar.gz.sha256
-            release-assets/cuda-libs-cu128-v1.tar.gz
-            release-assets/cuda-libs-cu128-v1.tar.gz.sha256
-            release-assets/cuda-libs.json
-          draft: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload onedir as workflow artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: voxloom-server-cuda-windows
-          path: backend/dist/voxloom-server-cuda/
-          retention-days: 7
-
-  build-rocm-windows:
-    runs-on: windows-latest
-    permissions:
-      contents: write
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          # ROCm wheels are cp312-cp312-specific — build_binary.py --rocm enforces this.
-          python-version: "3.12"
-          cache: "pip"
-
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
-          pip install -r backend/requirements.txt
-          pip install --no-deps chatterbox-tts
-          pip install --no-deps hume-tada
-
-      - name: Build ROCm server binary (onedir)
-        shell: bash
-        working-directory: backend
-        # build_binary.py --rocm pulls the official AMD Radeon torch + rocm_sdk
-        # wheels (rocm-rel-7.2.1) itself when ROCm torch is not already present,
-        # then restores the dev torch afterwards.
-        run: python build_binary.py --rocm
-
-      - name: Package into server core + ROCm libs archives
-        shell: bash
-        run: |
-          python scripts/package_rocm.py \
-            backend/dist/voxloom-server-rocm/ \
-            --output release-assets/ \
-            --rocm-libs-version rocm7.2-v1 \
-            --torch-compat ">=2.9.0,<2.10.0"
-
-      - name: Upload archives to GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            release-assets/voxloom-server-rocm.tar.gz
-            release-assets/voxloom-server-rocm.tar.gz.sha256
-            release-assets/rocm-libs-rocm7.2-v1.tar.gz
-            release-assets/rocm-libs-rocm7.2-v1.tar.gz.sha256
-            release-assets/rocm-libs.json
-          draft: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload onedir as workflow artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: voxloom-server-rocm-windows
-          path: backend/dist/voxloom-server-rocm/
-          retention-days: 7
+  # TEMP DEBUG: build-rocm-windows disabled for fast iteration. Restore below.
+  # build-rocm-windows:
+  #   runs-on: windows-latest
+  #   permissions:
+  #     contents: write
+  #
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #
+  #     - name: Setup Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         # ROCm wheels are cp312-cp312-specific — build_binary.py --rocm enforces this.
+  #         python-version: "3.12"
+  #         cache: "pip"
+  #
+  #     - name: Install Python dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install pyinstaller
+  #         pip install -r backend/requirements.txt
+  #         pip install --no-deps chatterbox-tts
+  #         pip install --no-deps hume-tada
+  #
+  #     - name: Build ROCm server binary (onedir)
+  #       shell: bash
+  #       working-directory: backend
+  #       # build_binary.py --rocm pulls the official AMD Radeon torch + rocm_sdk
+  #       # wheels (rocm-rel-7.2.1) itself when ROCm torch is not already present,
+  #       # then restores the dev torch afterwards.
+  #       run: python build_binary.py --rocm
+  #
+  #     - name: Package into server core + ROCm libs archives
+  #       shell: bash
+  #       run: |
+  #         python scripts/package_rocm.py \
+  #           backend/dist/voxloom-server-rocm/ \
+  #           --output release-assets/ \
+  #           --rocm-libs-version rocm7.2-v1 \
+  #           --torch-compat ">=2.9.0,<2.10.0"
+  #
+  #     - name: Upload archives to GitHub Release
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       uses: softprops/action-gh-release@v2
+  #       with:
+  #         files: |
+  #           release-assets/voxloom-server-rocm.tar.gz
+  #           release-assets/voxloom-server-rocm.tar.gz.sha256
+  #           release-assets/rocm-libs-rocm7.2-v1.tar.gz
+  #           release-assets/rocm-libs-rocm7.2-v1.tar.gz.sha256
+  #           release-assets/rocm-libs.json
+  #         draft: true
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #
+  #     - name: Upload onedir as workflow artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: voxloom-server-rocm-windows
+  #         path: backend/dist/voxloom-server-rocm/
+  #         retention-days: 7
