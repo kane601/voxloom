@@ -60,7 +60,7 @@
       "open": ".*"
     },
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc2OTQ3MDM2MDFFNEFDMUQKUldRZHJPUUJObkNVZGxaRWkzd21VVUgrZTJRblVqVWZLWk5wTWlNR0pjWUltNEdiMm1SL2EyR0kK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDhEMEM2ODhDQzk2NUI4QzQKUldURXVHWEpqR2dNallldGMxTzBsOFJ6dks2SmVnYW8vWFc3QnVGeFR2aW1YVjNiSDY0UmhPUmEK",
       "endpoints": ["https://github.com/kane601/voxloom/releases/latest/download/latest.json"]
     }
   }
